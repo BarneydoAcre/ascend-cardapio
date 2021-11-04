@@ -1,0 +1,12 @@
+body > .content-container {
+  background-color: rgb(236, 254, 255);
+  min-height: 100%;
+  width: 75%;
+  margin: 0 12.5%;
+  padding: 2%;
+
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  {% load static %}
+  <link href="{% static 'css/Main.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/Header.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/Content.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/Card.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/Footer.css' %}" rel="stylesheet" />
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <a class="header-logo" href="">
+          <img
+            class="header-img"
+            src="{% static 'public/instagram-icon.png' %}"
+            alt="Logo"
+          />
+        </a>
+        <div class="header-menu">
+          <a class="header-menu-options" href="http://127.0.0.1:8000/">
+            <span class="material-icons">home</span>Início
+          </a>
+          <a class="header-menu-options" href="http://127.0.0.1:8000/promocao/">
+            <span class="material-icons">fastfood</span>Promoção
+          </a>
+          <a class="header-menu-options" href="http://127.0.0.1:8000/pedidos/">
+            <span class="material-icons">menu_book</span>Meus Pedidos
+          </a>
+        </div>
+      </div>
+    </header>
+    {% block content %} {% endblock %}
+    <footer class="footer">
+      <div class="about-us">
+        <div class="title"><strong>Sobre Nós</strong></div>
+        <div class="subtitle">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius id
+          repudiandae enim a minus accusantium ut voluptate
+        </div>
+      </div>
+      <div class="social-media">
+        <div class="title"><strong>Siga nossas redes</strong></div>
+        <a href="https://www.instagram.com/lgabriel_fauth/">
+          <img
+            class="footer-img"
+            src="{% static 'public/instagram-icon.png' %}"
+            alt="Instagram"
+          />
+        </a>
+        <a href="https://www.facebook.com/luangabriel.fauth/">
+          <img
+            class="footer-img"
+            src="{% static 'public/facebook-icon.png' %}"
+            alt="Facebook"
+          />
+        </a>
+      </div>
+      <div class="all-rights-reserved">© Todos os direitos reservados</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% block title %}Meus Pedidos{% endblock %} 
+
+{% block content %}
+
+{% load static %}
+
+    <div class="content-container">
+        <form method="post" action='teste/'>
+            {% csrf_token %}
+            <p>
+                <input name='name' maxlenght='14' placeholder='nome'>
+            </p>
+            <p>
+                <select name="prato" placeholder="Seu Prato">
+                    {% for f in form %}
+                    <option value=" {{ f.id }}">{{ f.nome }}</option>
+                    {% endfor %}
+                </select>   
+            </p>
+            <p>  
+                <input name='value' placeholder="valor">
+            </p>            
+            <button type='submit'>Gerar Pedido</button>
+        </form> 
+    </div>
+
+{% endblock %}

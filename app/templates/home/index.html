@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+
+{% block title %}Cardápio{% endblock %} 
+
+{% block content %}
+
+{% load static %}
+
+<div class="content-container">
+  {% for d in db %}
+  <div class="card">
+    <img
+      class="card-img"
+      src="{% static 'public/Cardapio/Pizza-Napolitana.jpg' %}"
+    />
+    <div class="card-descricao">
+      <h3 class="card-title">{{ d.nome}}</h3>
+      <p class="card-subtitle">{{ d.descricao }}</p>
+      <p class="card-ingredients">
+        <strong>Ingredientes: </strong>{{ d.ingredients}}
+      </p>
+    </div>
+    <div class="card-div-btn">
+      <a href="http://127.0.0.1:8000/addpedidos/{{ d.id }}" class="card-btn">
+        <span class="material-icons">
+          shopping_basket
+        </span>
+        Comprar
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
