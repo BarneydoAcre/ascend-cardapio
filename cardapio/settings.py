@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-mn5-(&#4kx!-v!dxp-oeh$6gmjfevqp*e=iz(5hktm-3-x)7#)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://ascend-pedidos.herokuapp.com',
+]
 
 
 # Application definition
