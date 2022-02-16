@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Exemplo de requisição HTTP GET com javascript puro</title>
+</head>
+<body>
+    <div id="app">
+            <input type="text" id="url" style="width:300px;" value="/api/pratos/">
+            <button onclick="fazerRequisicao();">Fazer requisição</button>
+        <hr />
+        <div id="resposta">
+            <ul>
+                <li v-for="(t,index) in msg" :key="index">[[ t ]]</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module" src="{% static 'js/App.js' %}"></script>
+</body>
+</html>

@@ -3,66 +3,37 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
-  />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Icones  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Vue -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   {% load static %}
   <link href="{% static 'css/Main.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/Header.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/Content.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/Card.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/Footer.css' %}" rel="stylesheet" />
   <body>
-    <header class="header">
-      <div class="header-container">
-        <a class="header-logo" href="">
-          <img
-            class="header-img"
-            src="{% static 'public/instagram-icon.png' %}"
-            alt="Logo"
-          />
-        </a>
-        <div class="header-menu">
-          <a class="header-menu-options" href="/">
-            <span class="material-icons">home</span>Início
-          </a>
-          <a class="header-menu-options" href="/promocao/">
-            <span class="material-icons">fastfood</span>Promoção
-          </a>
-          <a class="header-menu-options" href="/pedidos/">
-            <span class="material-icons">menu_book</span>Meus Pedidos
-          </a>
-        </div>
-      </div>
-    </header>
-    {% block content %} {% endblock %}
-    <footer class="footer">
-      <div class="about-us">
-        <div class="title"><strong>Sobre Nós</strong></div>
-        <div class="subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius id
-          repudiandae enim a minus accusantium ut voluptate
-        </div>
-      </div>
-      <div class="social-media">
-        <div class="title"><strong>Siga nossas redes</strong></div>
-        <a href="https://www.instagram.com/lgabriel_fauth/">
-          <img
-            class="footer-img"
-            src="{% static 'public/instagram-icon.png' %}"
-            alt="Instagram"
-          />
-        </a>
-        <a href="https://www.facebook.com/luangabriel.fauth/">
-          <img
-            class="footer-img"
-            src="{% static 'public/facebook-icon.png' %}"
-            alt="Facebook"
-          />
-        </a>
-      </div>
-      <div class="all-rights-reserved">© Todos os direitos reservados</div>
-    </footer>
+
+    <div id="app">
+      {% include 'components/Header.html' %}
+      
+      {% block content %}{% endblock %}
+
+      {% include 'components/Footer.html' %}
+    </div>
+    
+    <script src="{% static 'js/App.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
   </body>
+
 </html>

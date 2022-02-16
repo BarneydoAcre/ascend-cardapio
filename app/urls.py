@@ -8,4 +8,8 @@ urlpatterns = [
     path('promocao/', views.promocao, name='promocao'),
     path('pedidos/', views.pedidos, name='pedido'),
     path('pedidos/addpedido/', views.addPedidos, name='addPedido'),
+    ###############
+    ##### API #####
+    ###############
+    path('api/pratos/', views.getAllPratos, name="apiPratos"),
 ]
