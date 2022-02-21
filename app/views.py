@@ -28,5 +28,6 @@ def addPedidos(request):
 def getAllPratos(request):
     data = []
     for p in Prato.objects.all():
-        data.append({"title": p.nome,"desc": p.descricao, "ingred": p.ingredients, "valor": p.valor})
+        print(p.image)
+        data.append({"id": p.id, "title": p.nome,"desc": p.descricao, "ingred": p.ingredients, "valor": p.valor, "image": str(p.image)})
     return HttpResponse(json.dumps(data))

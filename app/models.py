@@ -6,6 +6,9 @@ class Prato(models.Model):
     ingredients = models.CharField(max_length = 100)
     valor = models.FloatField()
 
+    # image = models.FileField(upload_to='app/static/public/cardapio/', blank=True)
+    image = models.CharField(max_length=255, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

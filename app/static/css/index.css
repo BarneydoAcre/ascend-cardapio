@@ -1,0 +1,43 @@
+#index-view {
+    display: flex;
+    flex: wrap;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+
+    width: 300px;
+    margin: 4px;
+}
+.card:hover {
+    
+}
+.card-img {
+    width: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-data {
+    width: 50%;
+}
+
+.card-div-btn {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+}
+
+.card-btn {
+    background-color: #222;
+    border: none;
+    border-radius: 0 0 5px 0;
+    color:rgb(199, 143, 0);
+}
+
+.pulse::before{
+    animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) 2 !important;
+}

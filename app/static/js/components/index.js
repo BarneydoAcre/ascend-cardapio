@@ -1,4 +1,3 @@
-// import Header from "./components/Header.js"
 const myApp = {
     delimiters: ["[[","]]"],
     data() {
@@ -18,4 +17,5 @@ const myApp = {
     }
 }
 const app = Vue.createApp(myApp)
+
 app.mount('#app')
