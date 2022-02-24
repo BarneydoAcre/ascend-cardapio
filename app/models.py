@@ -1,13 +1,13 @@
 from django.db import models
 
 class Prato(models.Model):
-    nome = models.CharField(max_length = 30)
-    descricao = models.CharField(max_length = 60)
+    name = models.CharField(max_length = 30)
+    desc = models.CharField(max_length = 60)
     ingredients = models.CharField(max_length = 100)
-    valor = models.FloatField()
+    value = models.FloatField()
 
     # image = models.FileField(upload_to='app/static/public/cardapio/', blank=True)
-    image = models.CharField(max_length=255, blank=True)
+    image = models.TextField(max_length=255, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

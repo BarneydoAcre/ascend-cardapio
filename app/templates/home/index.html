@@ -7,20 +7,22 @@
 {% block content %}
 <h2>Nossos pratos</h2>
 <section id="index-view">
-  <form method="POST" class="card" v-for="(p,index) in prato" :key="index">
-    <input type="hidden" name="id" :value="p.id">
-    <div class="card-img" style="background-image: url('[[ p.image ]]');"></div>
+  {% for p in pratos %}
+  <form method="POST" class="card">
+    <input type="hidden" name="id" value="{{ p.id }}">
+    <div class="card-img" style="background-image: url('{{ p.image }}');"></div>
     <div class="card-data">
-      <h5 class="card-data-title">[[ p.title ]]</h5>
-      <p class="card-data-desc">[[ p.desc ]]</p>
+      <h5 class="card-data-title">{{ p.name }}</h5>
+      <p class="card-data-desc">{{ p.desc }}</p>
       <p class="card-data-ingredients">
-        <strong>Ingredientes: </strong>[[ p.ingred ]]
+        <strong>Ingredientes: </strong><br>{{ p.ingredients }}
       </p>
     </div>
     <div class="card-div-btn">
       <button type="submit" class="card-btn pulse" style="z-index: 100;"><span class="material-icons" style="font-size: 48px;">shopping_basket</span></button>
     </div>
   </form>
+  {% endfor %}
 </section>
 {% endblock %}
 {% block script %}
