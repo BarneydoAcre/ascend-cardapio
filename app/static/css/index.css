@@ -1,6 +1,6 @@
 #index-view {
     display: flex;
-    flex: wrap;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -9,6 +9,7 @@
     justify-content: center;
 
     width: 300px;
+    height: 250px;
     min-width: 300px;
     margin: 4px;
 }
@@ -40,5 +41,5 @@
 }
 
 .pulse::before{
-    animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) 2 !important;
+    animation: pulse-animation 3s cubic-bezier(0.24, 0, 0.38, 9) infinite;
 }
