@@ -9,6 +9,7 @@
 <section id="index-view">
   {% for p in pratos %}
   <form method="POST" class="card">
+    {% csrf_token %}
     <input type="hidden" name="id" value="{{ p.id }}">
     <div class="card-img" style="background-image: url('{{ p.image }}');"></div>
     <div class="card-data">

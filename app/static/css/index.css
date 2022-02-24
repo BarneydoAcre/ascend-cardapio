@@ -9,15 +9,15 @@
     justify-content: center;
 
     width: 300px;
+    min-width: 300px;
     margin: 4px;
 }
-.card:hover {
-    
-}
+
 .card-img {
     width: 50%;
     background-size: cover;
     background-position: center;
+    margin-right: 4px;
 }
 
 .card-data {
@@ -36,6 +36,7 @@
     border: none;
     border-radius: 0 0 5px 0;
     color:rgb(199, 143, 0);
+    cursor: pointer;
 }
 
 .pulse::before{
