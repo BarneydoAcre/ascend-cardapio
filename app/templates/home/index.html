@@ -79,17 +79,18 @@
             <label for="cpf">CPF</label>
           </div>
           <div class="input-field" style="width: 60%;">
-            <input type="text" name="name" id="name" maxlength="30">
+            <input type="text" name="name" id="name" maxlength="30" v-model="nome">
             <label for="Nome">Nome</label>
           </div>
         </div>
         <div class="input-field">
-          <input type="text" name="rua" id="rua" maxlength="50">
+          <input type="text" name="rua" id="rua" maxlength="50" v-model="end">
+          <p>[[ end ]]</p>
           <label for="rua">Rua/Bairro/Nº</label>
         </div>
       </div>
       <div class="modal-footer">
-        <a :href="link+linkFone+linkText" target="_blank" class="modal-close" style="z-index: 100;" data-target="modal1">Adicionar ao pedido</a>
+        <a :href="link+linkFone+linkText" target="_blank" @click="sendPedido" class="modal-close" style="z-index: 100;" data-target="modal1">Adicionar ao pedido</a>
       </div>
     </form>
   </div>

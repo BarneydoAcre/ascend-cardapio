@@ -27,14 +27,15 @@ const myApp = {
 
             this.qtd = null
             this.maionese = false
-            
-            let st = null
+        },
+
+        async sendPedido() {
             let s = null
             for (let i = 0; i < this.pedido.length; i++) {
                 if (s != null) {
-                    s = s + `,%0A${this.pedido[i].qtd} ${this.pedido[i].title} `
+                    s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - `
                 }else{
-                    s = `${this.pedido[i].qtd} ${this.pedido[i].title} `
+                    s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - `
                 }
                 if (this.pedido[i].maionese == true){let m = `com maionese`
                     s = s + m
@@ -43,7 +44,8 @@ const myApp = {
                     s = s + m
                 }
             }
-            this.linkText = `text=Boa noite, olha aqui meu pedido:%0A%0A${s}`
+            console.log(this.nome)
+            this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0AEndereço: ${this.end}%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
         },
         // cpfMaskUp(event) {
         //     for (let i = 0; i < self.cpf.length; i++){
