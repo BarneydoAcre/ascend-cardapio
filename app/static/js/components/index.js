@@ -33,9 +33,9 @@ const myApp = {
             let s = null
             for (let i = 0; i < this.pedido.length; i++) {
                 if (s != null) {
-                    s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                    s = s + `,%0A${this.pedido[i].title} - ${this.pedido[i].qtd} - `
                 }else{
-                    s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                    s = `${this.pedido[i].title} - ${this.pedido[i].qtd} - `
                 }
                 if (this.pedido[i].maionese == true){let m = `com maionese`
                     s = s + m
