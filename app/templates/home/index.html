@@ -28,7 +28,7 @@
         <div class="card-img" style="background-image: url('{{ p.image }}'); width: 100%; height: 100px; border-radius: 5px;"></div>
         <div class="card-data" style="width: 100%; display: flex; align-items: center; flex-direction: column;">
           <h6 style="margin-top: 24px;"><b>Informações adicionais</b></h6>
-          <div style="display: flex;">
+          <div class='div-qtd'>
             <div class="input-field" style="width: 150px; margin-right: 16px;">
               <input type="number" name="qtd" id="qtd" v-model="qtd">
               <label for="qtd">Quantidade</label>
@@ -85,7 +85,6 @@
         </div>
         <div class="input-field">
           <input type="text" name="rua" id="rua" maxlength="50" v-model="end">
-          <p>[[ end ]]</p>
           <label for="rua">Rua/Bairro/Nº</label>
         </div>
       </div>

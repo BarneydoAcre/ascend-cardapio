@@ -56,3 +56,12 @@
     margin-right: 4px;
 }
 
+.div-qtd {
+    display: flex;
+}
+
+@media only screen and (max-width: 460px) {
+    .div-qtd {
+        flex-direction: column;
+    }
+}
