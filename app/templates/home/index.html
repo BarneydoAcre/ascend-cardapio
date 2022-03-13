@@ -51,7 +51,6 @@
 
     {% endfor %}
     
-  <a class="card-btn modal-trigger" style="z-index: 100;" data-target="modal-carrinho"><span class="material-icons" style="font-size: 48px;">shopping_basket</span></a>
   <!-- Modal Structure -->
   <div id="modal-carrinho" class="modal">
     <form action='/pedidos/addpedido/' method="POST">
@@ -95,6 +94,12 @@
     </form>
   </div>
 </section>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red pulse modal-trigger" data-target="modal-carrinho">
+    <i class="large material-icons">shopping_basket</i>
+  </a>
+</div>
 {% endblock %}
 {% block script %}
   <script src="{% static 'js/components/index.js' %}"></script>
