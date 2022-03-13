@@ -1,6 +1,6 @@
-from this import d
 from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from .models import Prato, Pedido
 from .forms import PedidoForm
 import json
@@ -26,14 +26,16 @@ def addPedidos(request):
 ###############
 ##### API #####
 ###############
-# def getAllPratos(request):
-#     data = []
-#     for p in Prato.objects.all():
-#         print(p.image)
-#         data.append({"id": p.id, "title": p.nome,"desc": p.descricao, "ingred": p.ingredients, "valor": p.valor, "image": str(p.image)})
-#         print(p.image, "   teste")
-#     return HttpResponse(json.dumps(data))
+def getAllPratos(request):
+    data = []
+    for p in Prato.objects.filter(id=request.GET['id']):
+        data.append({"id": p.id, "title": p.name,"desc": p.desc, "ingred": p.ingredients, "valor": p.value, "image": str(p.image)})
+    return HttpResponse(json.dumps(data))
 
+def createPedido(request):
+    data = []
+
+    return HttpResponse(json.dumps(data))
 
 
 #https://api.whatsapp.com/send?phone=5567984540339&text=espaço%20quebra%0Avirgula%2C redirect

@@ -11,5 +11,5 @@ urlpatterns = [
     ###############
     ##### API #####
     ###############
-    # path('api/pratos/', views.getAllPratos, name="apiPratos"),
+    path('api/pratos/', views.getAllPratos, name="apiPratos"),
 ]

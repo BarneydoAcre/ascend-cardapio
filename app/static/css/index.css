@@ -48,4 +48,11 @@
     max-height: 90% !important;
 }
 
+.img-pedido {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 4px;
+}
 

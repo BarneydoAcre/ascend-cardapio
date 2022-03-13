@@ -3,14 +3,47 @@ const myApp = {
     data() {
         return {
             pedido: [],
-            cpf: 0, //ok
+            qtd: null,
+            maionese: false,
+            cpf: null, //ok
+            nome: null,
+            end: null,
             cpfArray: [], //ok
+            link: "https://api.whatsapp.com/send?",
+            linkFone: "phone=5567984540339&",
+            linkText: null
         }
     },
     methods: {
-        pedidos(id) {
-            this.pedido.push(id)
+        async pedidos(id) {
+            const req = await fetch("/api/pratos/?id="+id, {method: 'GET'})
+            const res = await req.json()
+            res[0].qtd = this.qtd
+            res[0].maionese = this.maionese
+            
+            this.pedido.push(res[0])
+
             console.log(this.pedido)
+
+            this.qtd = null
+            this.maionese = false
+            
+            let st = null
+            let s = null
+            for (let i = 0; i < this.pedido.length; i++) {
+                if (s != null) {
+                    s = s + `,%0A${this.pedido[i].qtd} ${this.pedido[i].title} `
+                }else{
+                    s = `${this.pedido[i].qtd} ${this.pedido[i].title} `
+                }
+                if (this.pedido[i].maionese == true){let m = `com maionese`
+                    s = s + m
+                }else{
+                    let m = `sem maionese`
+                    s = s + m
+                }
+            }
+            this.linkText = `text=Boa noite, olha aqui meu pedido:%0A%0A${s}`
         },
         // cpfMaskUp(event) {
         //     for (let i = 0; i < self.cpf.length; i++){
