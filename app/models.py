@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 
 class Prato(models.Model):
@@ -16,9 +17,8 @@ class Prato(models.Model):
         return self.name
 
 class Pedido(models.Model):
+    prato = models.ForeignKey('Prato', verbose_name="Prato", on_delete=models.PROTECT)
     cpf = models.CharField(max_length = 14)
-    prato = models.IntegerField()
-    valor = models.DecimalField(max_digits = 8, decimal_places = 2)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)

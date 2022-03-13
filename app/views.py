@@ -18,9 +18,8 @@ def pedidos(request):
 
 def addPedidos(request):
     if request.method == "POST":
-        p = Pedido(cpf=request.POST['name'], prato=request.POST['age'], valor = request.POST['value'].replace(',','.'))
-        p.save()
-    return redirect('../../')
+        p = Pedido( prato=request.POST['prato'], cpf=request.POST['name']).save()
+    return redirect('/')
 
 
 
@@ -34,3 +33,7 @@ def addPedidos(request):
 #         data.append({"id": p.id, "title": p.nome,"desc": p.descricao, "ingred": p.ingredients, "valor": p.valor, "image": str(p.image)})
 #         print(p.image, "   teste")
 #     return HttpResponse(json.dumps(data))
+
+
+
+#https://api.whatsapp.com/send?phone=5567984540339&text=espaço%20quebra%0Avirgula%2C redirect

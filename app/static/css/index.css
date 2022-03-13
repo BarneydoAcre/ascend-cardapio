@@ -43,3 +43,9 @@
 .pulse::before{
     animation: pulse-animation 3s cubic-bezier(0.24, 0, 0.38, 9) infinite;
 }
+
+.modal {
+    max-height: 90% !important;
+}
+
+
