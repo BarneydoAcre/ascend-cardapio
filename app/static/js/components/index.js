@@ -2,16 +2,20 @@ const myApp = {
     delimiters: ["[[","]]"],
     data() {
         return {
-            pedido: [],
-            qtd: null,
-            maionese: false,
+            pedido: [], //ok
+            qtd: null, //ok
+            maionese: false, //ok
+            total: null, //ok
             cpf: null, //ok
-            nome: null,
-            end: null,
+            nome: null, //ok
+            entrega: false, //ok
+            retirada: false, //ok
+            local: false, //ok
+            end: null, //ok
             cpfArray: [], //ok
-            link: "https://api.whatsapp.com/send?",
-            linkFone: "phone=5567984540339&",
-            linkText: null
+            link: "https://api.whatsapp.com/send?", //ok
+            linkFone: "phone=5567984540339&", //ok
+            linkText: null //ok
         }
     },
     methods: {
@@ -20,31 +24,50 @@ const myApp = {
             const res = await req.json()
             res[0].qtd = this.qtd
             res[0].maionese = this.maionese
+            res[0].total = res[0].valor * this.qtd
+
+            this.total = this.total + res[0].valor * this.qtd
             
             this.pedido.push(res[0])
-
-            console.log(this.pedido)
 
             this.qtd = null
             this.maionese = false
         },
 
+        async retiradaForma () {
+            if (this.entrega == true || this.retirada == true || this.local == true) {
+                this.entrega = false
+                this.retirada = false
+                this.local = false
+            }
+        },
+
         async sendPedido() {
             let s = null
             for (let i = 0; i < this.pedido.length; i++) {
-                if (s != null) {
-                    s = s + `,%0A${this.pedido[i].title} - ${this.pedido[i].qtd} - `
+                if (s == null) {
+                    s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - `
                 }else{
-                    s = `${this.pedido[i].title} - ${this.pedido[i].qtd} - `
+                    s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - `
                 }
-                if (this.pedido[i].maionese == true){let m = `com maionese`
+                if (this.pedido[i].maionese == true){
+                    let m = `Com maionese - `
                     s = s + m
                 }else{
-                    let m = `sem maionese`
+                    let m = `Sem maionese - `
+                    s = s + m
+                }
+                if (this.entrega == true){
+                    let m = `Para entrega`
+                    s = s + m
+                }if (this.retirada == true) {
+                    let m = `Retirada`
+                    s = s + m
+                }if (this.local == true) {
+                    let m = `Comer no local`
                     s = s + m
                 }
             }
-            console.log(this.nome)
             this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0AEndereço: ${this.end}%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
         },
         // cpfMaskUp(event) {
