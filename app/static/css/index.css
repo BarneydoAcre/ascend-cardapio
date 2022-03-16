@@ -59,11 +59,14 @@
 }
 
 .div-qtd {
-    display: flex;
+    display: flex; 
+    flex-direction: column;
+}
+.forma-retirada {
+    display: flex; 
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
-@media only screen and (max-width: 460px) {
-    .div-qtd {
-        flex-direction: column;
-    }
+@media only screen and (max-width: 550px) {
 }

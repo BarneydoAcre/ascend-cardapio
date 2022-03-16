@@ -7,15 +7,17 @@ const myApp = {
             maionese: false, //ok
             total: null, //ok
             cpf: null, //ok
+            cpfLength: null, //ok
             nome: null, //ok
-            entrega: false, //ok
+            entrega: true, //ok
             retirada: false, //ok
             local: false, //ok
             end: null, //ok
             cpfArray: [], //ok
-            link: "https://api.whatsapp.com/send?", //ok
-            linkFone: "phone=5567984540339&", //ok
-            linkText: null //ok
+            link: null, //ok
+            linkFone: null, //ok
+            linkText: null, //ok
+            linkOk: false //ok
         }
     },
     methods: {
@@ -43,32 +45,64 @@ const myApp = {
         },
 
         async sendPedido() {
-            let s = null
-            for (let i = 0; i < this.pedido.length; i++) {
-                if (s == null) {
-                    s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+            if (this.cpf != null && this.cpf != "") {
+                if (this.cpfLength == 14) {
+                    if (this.nome != null && this.nome != "") {
+                        if (this.entrega != false || this.retirada != false || this.local != false) {
+                            let s = null
+                            for (let i = 0; i < this.pedido.length; i++) {
+                                console.log('14')
+                                if (s == null) {
+                                    s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                                }else{
+                                    s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                                }
+                                if (this.pedido[i].maionese == true){
+                                    let m = `Com maionese - `
+                                    s = s + m
+                                }else{
+                                    let m = `Sem maionese - `
+                                    s = s + m
+                                }
+                                if (this.entrega == true){
+                                    let m = `Para entrega`
+                                    s = s + m
+                                }if (this.retirada == true) {
+                                    let m = `Retirada`
+                                    s = s + m
+                                }if (this.local == true) {
+                                    let m = `Comer no local`
+                                    s = s + m
+                                }
+                                this.linkOk = true
+                                
+                            } 
+                            // this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0AEndereço: ${this.end}%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
+                            // this.link = "https://api.whatsapp.com/send?"
+                            // this.linkFone = "phone=5567984540339&"
+                        }
+                        self.idname.style = "border-bottom: 1px solid #9e9e9e;"
+                        self.nameLabel.style = "color: #9e9e9e;"
+                        self.nameLabel.innerHTML = "Nome"
+                    }else{
+                        self.idname.style = "border-bottom: 1px solid red"
+                        self.nameLabel.style = "color: red;"
+                        self.nameLabel.innerHTML = "Nome vázio"
+                    }
+                    self.cpf.style = "border-bottom: 1px solid #9e9e9e;"
+                    self.cpfLabel.style = "color: #9e9e9e;"
+                    self.cpfLabel.innerHTML = "CPF"
                 }else{
-                    s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                    self.cpf.style = "border-bottom: 1px solid red;"
+                    self.cpfLabel.style = "color: red;"
+                    self.cpfLabel.innerHTML = "CPF deve conter 11 dígitos!"
                 }
-                if (this.pedido[i].maionese == true){
-                    let m = `Com maionese - `
-                    s = s + m
-                }else{
-                    let m = `Sem maionese - `
-                    s = s + m
-                }
-                if (this.entrega == true){
-                    let m = `Para entrega`
-                    s = s + m
-                }if (this.retirada == true) {
-                    let m = `Retirada`
-                    s = s + m
-                }if (this.local == true) {
-                    let m = `Comer no local`
-                    s = s + m
-                }
+                
+            }else{
+                self.cpf.style = "border-bottom: 2px solid red;"
+                self.cpfLabel.style = "color: red;"
+                self.cpfLabel.innerHTML = "CPF vázio!"
             }
-            this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0AEndereço: ${this.end}%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
         },
         // cpfMaskUp(event) {
         //     for (let i = 0; i < self.cpf.length; i++){
@@ -97,16 +131,17 @@ const myApp = {
         //     }
         // }
         cpfMaskUp() {
-            if (self.cpf.value.length > this.cpf) {
-                this.cpf = self.cpf.value.length
+            if (self.cpf.value.length > this.cpfLength) {
+                this.cpfLength = self.cpf.value.length
                 if (self.cpf.value.length == 3 || self.cpf.value.length == 7) {
                     self.cpf.value = self.cpf.value + '.'
                 }if (self.cpf.value.length == 11) {
                     self.cpf.value = self.cpf.value + '-'
                 }
             }else {
-                this.cpf = self.cpf.value.length
+                this.cpfLength = self.cpf.value.length
             }
+            this.cpf = self.cpf.value
             
         },
         cpfMaskDown(event) {
@@ -117,6 +152,7 @@ const myApp = {
                     self.cpf.value = self.cpf.value + '-'
                 }
             }
+            this.cpfLength = self.cpf.value
         }
     }
 }

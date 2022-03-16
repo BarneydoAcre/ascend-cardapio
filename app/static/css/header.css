@@ -56,7 +56,8 @@ header .header-menu .header-menu-options:hover {
     border-radius: 0 5px 5px 0;
 }
 .welcome-img div p {
-    font-family: 'Bungee Shade', cursive;
+    /* font-family: 'Bungee Shade', cursive; */
+    font-family: 'Cupola', cursive;
     margin: 0;
     font-size: 110px;
     margin-left: 25px;

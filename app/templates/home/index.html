@@ -80,16 +80,15 @@
         </div>
         <div style="display: flex; align-items: center;">
           <div class="input-field" style="width: 30%; margin-right: 10%;  ">
-            <input type="text" name="cpf" id="cpf" maxlength="14" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
-            <label for="cpf">CPF</label>
+            <input type="text" name="cpf" id="cpf" maxlength="14"v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
+            <label for="cpf" id="cpfLabel">CPF</label>
           </div>
           <div class="input-field" style="width: 60%;">
-            <input type="text" name="name" id="name" maxlength="30" v-model="nome">
-            <label for="Nome">Nome</label>
+            <input type="text" name="idname" id="idname" maxlength="30" v-model="nome">
+            <label for="idname" id="nameLabel">Nome</label>
           </div>
         </div>
-        [[ entrega ]] [[ retirada ]] [[ local ]]
-        <div style="display: flex; justify-content: space-evenly;">
+        <div class="forma-retirada">
           <label style="display: flex; align-items: center;">
             <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="entrega">
             <span>Entrega?</span>
@@ -111,7 +110,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a :href="link+linkFone+linkText" target="_blank" @click="sendPedido" class="modal-close btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
+        <a class="btn modal-close" style="z-index: 100; background-color: #222; margin-right: 16px;" data-target="modal1">Voltar</a>
+        <a v-if="link != null" :href="link+linkFone+linkText" target="_blank" @click="sendPedido" class="modal-close btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
+        <a v-else target="_blank" @click="sendPedido" class="btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
       </div>
     </form>
   </div>
