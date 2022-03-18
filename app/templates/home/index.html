@@ -74,7 +74,7 @@
     {% if time.tm_hour <= g.abertura or time.tm_hour >= g.fechamento %}
     <div class="modal-content">
       <div style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <h5>Estamos fechados</h5>
+        <h5>Fechamos às {{ g.fechamento }} horas</h5>
         <h6>Abriremos novamente as {{ g.abertura }} horas!</h6>
       </div>
     </div>
@@ -154,7 +154,7 @@
     {% if time.tm_hour <= g.abertura or time.tm_hour >= g.fechamento %}
     <div class="modal-content">
       <div style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <h5>Estamos fechados</h5>
+        <h5>Fechamos às {{ g.fechamento }} horas</h5>
         <h6>Abriremos novamente as {{ g.abertura }} horas!</h6>
       </div>
     </div>
