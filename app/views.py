@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Prato, Pedido
+from . import models
 from .forms import PedidoForm
 import json
+import time
 
 def index(request):
     db = {}
-    db['pratos'] = Prato.objects.all()
+    db['time'] = time.localtime()
+    db['gerencial'] = models.Gerencial.objects.all()
+    db['pratos'] = models.Prato.objects.all()
     return render(request, 'home/index.html', db)
 
 def promocao(request):
@@ -18,7 +21,7 @@ def pedidos(request):
 
 def addPedidos(request):
     if request.method == "POST":
-        p = Pedido( prato=request.POST['prato'], cpf=request.POST['name']).save()
+        p = models.Pedido( prato=request.POST['prato'], cpf=request.POST['name']).save()
     return redirect('/')
 
 
@@ -28,7 +31,7 @@ def addPedidos(request):
 ###############
 def getAllPratos(request):
     data = []
-    for p in Prato.objects.filter(id=request.GET['id']):
+    for p in models.Prato.objects.filter(id=request.GET['id']):
         data.append({"id": p.id, "title": p.name,"desc": p.desc, "ingred": p.ingredients, "valor": p.value, "image": str(p.image)})
     return HttpResponse(json.dumps(data))
 

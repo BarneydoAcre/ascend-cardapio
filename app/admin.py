@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Prato,Pedido
+from . import models
 
-admin.site.register(Prato)
-admin.site.register(Pedido)
+admin.site.register(models.Prato)
+admin.site.register(models.Pedido)
+admin.site.register(models.Gerencial)

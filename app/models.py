@@ -6,6 +6,7 @@ class Prato(models.Model):
     desc = models.CharField(max_length = 60)
     ingredients = models.CharField(max_length = 100)
     value = models.FloatField()
+    disponibilidade = models.BooleanField(default=True)
 
     # image = models.FileField(upload_to='app/static/public/cardapio/', blank=True)
     image = models.TextField(max_length=255, blank=True)
@@ -22,3 +23,13 @@ class Pedido(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+class Gerencial(models.Model):
+    abertura = models.IntegerField(verbose_name='Abertura', default=18)
+    fechamento = models.IntegerField(verbose_name='Fechamento', default=22)
+
+    class Meta:
+        verbose_name_plural = 'Gerencial'
+
+    def __str__(self):
+        return str(str(self.abertura) + ' às ' + str(self.fechamento))
