@@ -4,11 +4,12 @@ from django.views.decorators.csrf import csrf_exempt
 from . import models
 from .forms import PedidoForm
 import json
-import time
+from datetime import datetime, timezone, timedelta
 
 def index(request):
     db = {}
-    db['time'] = time.localtime()
+    timezone(timedelta(hours=-3))
+    db['time'] = int(datetime.now().strftime("%H:%M").split(':')[0])
     db['gerencial'] = models.Gerencial.objects.all()
     db['pratos'] = models.Prato.objects.all()
     return render(request, 'home/index.html', db)

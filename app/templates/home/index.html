@@ -18,26 +18,20 @@
         </p>
       </div>
       <div class="card-div-btn">
-        {% if p.disponibilidade %}
-        <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal{{p.id}}"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
+        {% for g in gerencial %}
+        {% if time <= g.abertura or time >= g.fechamento %}
+        <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-fechado"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
         {% else %}
-        <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-indisponivel"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
+          {% if p.disponibilidade %}
+          <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal{{p.id}}"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
+          {% else %}
+          <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-indisponivel"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
+          {% endif %}
         {% endif %}
+        {% endfor %}
       </div>
     </div>
     <div id="modal{{p.id}}" class="modal">
-      {% for g in gerencial %}
-      {% if time.tm_hour <= g.abertura or time.tm_hour >= g.fechamento %}
-      <div class="modal-content">
-        <div style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-          <h5>Estamos fechados</h5>
-          <h6>Abriremos novamente as {{ g.abertura }} horas!</h6>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn modal-close">Fechar</button>
-      </div>
-      {% else %}
       <div class="modal-content">
         <h4>{{ p.name }}</h4>
         <div class="card-img" style="background-image: url('{{ p.image }}'); width: 100%; height: 100px; border-radius: 5px;"></div>
@@ -62,26 +56,12 @@
       <div class="modal-footer">
         <button v-on:click="pedidos({{ p.id }})" class="btn modal-close">Adicionar ao pedido</button>
       </div>
-      {% endif %}
-      {% endfor %}
     </div>
     
     {% endfor %}
     
   <!-- Modal Structure -->
   <div id="modal-carrinho" class="modal">
-    {% for g in gerencial %}
-    {% if time.tm_hour <= g.abertura or time.tm_hour >= g.fechamento %}
-    <div class="modal-content">
-      <div style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <h5>Fechamos às {{ g.fechamento }} horas</h5>
-        <h6>Abriremos novamente as {{ g.abertura }} horas!</h6>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn modal-close">Fechar</button>
-    </div>
-    {% else %}
     <form action='/pedidos/addpedido/' method="POST">
       {% csrf_token %}
       <div class="modal-content">
@@ -144,24 +124,10 @@
         <a v-else target="_blank" @click="sendPedido" class="btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
       </div>
     </form>
-    {% endif %}
-    {% endfor %}
   </div>
 
   <!-- MODAL INDISPONIVEL -->
   <div id="modal-indisponivel" class="modal">
-    {% for g in gerencial %}
-    {% if time.tm_hour <= g.abertura or time.tm_hour >= g.fechamento %}
-    <div class="modal-content">
-      <div style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <h5>Fechamos às {{ g.fechamento }} horas</h5>
-        <h6>Abriremos novamente as {{ g.abertura }} horas!</h6>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn modal-close">Fechar</button>
-    </div>
-    {% else %}
     <div class="modal-content">
       <div class="card-data" style="width: 100%; height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
         <h5>Dog indisponível</h5>
@@ -171,12 +137,31 @@
       <button class="btn modal-close">Fechar</button>
     </div>
   </div>
-  {% endif %}
-  {% endfor %}
+
+  <!-- MODAL FECHADO -->
+  <div id="modal-fechado" class="modal">
+    {% for g in gerencial %}
+    <div class="modal-content">
+      <div style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <h5>Fechamos às {{ g.fechamento }} horas</h5>
+        <h6>Abriremos novamente as {{ g.abertura }} horas!</h6>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn modal-close">Fechar</button>
+    </div>
+    {% endfor %}
+  </div>
 </section>
 
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red pulse modal-trigger" data-target="modal-carrinho">
+  {% for g in gerencial %}
+    {% if time <= g.abertura or time >= g.fechamento %}
+    <a class="btn-floating btn-large red pulse modal-trigger" data-target="modal-fechado">
+    {% else %}
+    <a class="btn-floating btn-large red pulse modal-trigger" data-target="modal-carrinho">
+    {% endif %}
+  {% endfor %}
     <i class="large material-icons">shopping_basket</i>
   </a>
 </div>
