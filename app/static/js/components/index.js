@@ -3,6 +3,7 @@ const myApp = {
     data() {
         return {
             pedido: [], //ok
+            pedidoLength: 0,
             qtd: null, //ok
             maionese: false, //ok
             total: null, //ok
@@ -31,6 +32,7 @@ const myApp = {
             this.total = this.total + res[0].valor * this.qtd
             
             this.pedido.push(res[0])
+            this.pedidoLength = this.pedido.length
 
             this.qtd = null
             this.maionese = false
@@ -45,45 +47,50 @@ const myApp = {
         },
 
         async sendPedido() {
+            if (this.pedido.length <= 0) {
+                return false;
+            }
             if (this.cpf != null && this.cpf != "") {
                 if (this.cpfLength == 14) {
                     if (this.nome != null && this.nome != "") {
-                        if (this.entrega != false || this.retirada != false || this.local != false) {
-                            let s = null
-                            for (let i = 0; i < this.pedido.length; i++) {
-                                console.log('14')
-                                if (s == null) {
-                                    s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                        if (this.entrega != false || this.retirada != false || this.local != false) {  
+                            if (this.pedido.length >= 0) {
+                                let s = null
+                                for (let i = 0; i < this.pedido.length; i++) {
+                                    console.log('14')
+                                    if (s == null) {
+                                        s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                                    }else{
+                                        s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                                    }
+                                    if (this.pedido[i].maionese == true){
+                                        let m = `Com maionese - `
+                                        s = s + m
+                                    }else{
+                                        let m = `Sem maionese - `
+                                        s = s + m
+                                    }
+                                    if (this.entrega == true){
+                                        let m = `Para entrega / ${this.end}`
+                                        s = s + m
+                                    }if (this.retirada == true) {
+                                        let m = `Retirada`
+                                        s = s + m
+                                    }if (this.local == true) {
+                                        let m = `Comer no local`
+                                        s = s + m
+                                    }
+                                    this.linkOk = true
+                                    
+                                }
+                                if (this.entrega == true) {
+                                    this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
                                 }else{
-                                    s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - `
+                                    this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
                                 }
-                                if (this.pedido[i].maionese == true){
-                                    let m = `Com maionese - `
-                                    s = s + m
-                                }else{
-                                    let m = `Sem maionese - `
-                                    s = s + m
-                                }
-                                if (this.entrega == true){
-                                    let m = `Para entrega`
-                                    s = s + m
-                                }if (this.retirada == true) {
-                                    let m = `Retirada`
-                                    s = s + m
-                                }if (this.local == true) {
-                                    let m = `Comer no local`
-                                    s = s + m
-                                }
-                                this.linkOk = true
-                                
+                                this.link = "https://api.whatsapp.com/send?"
+                                this.linkFone = "phone=5567984540339&"
                             }
-                            if (this.retirada != true || this.local != true) {
-                                this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
-                            }else{
-                                this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0AEndereço: ${this.end}%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
-                            }
-                            this.link = "https://api.whatsapp.com/send?"
-                            this.linkFone = "phone=5567984540339&"
                         }
                         self.idname.style = "border-bottom: 1px solid #9e9e9e;"
                         self.nameLabel.style = "color: #9e9e9e;"

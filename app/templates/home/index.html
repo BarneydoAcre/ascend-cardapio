@@ -5,7 +5,6 @@
 {% block title %}Cardápio{% endblock %} 
 
 {% block content %}
-{{time}} {{ gerencial }}
 <h2 style='width: 100%; text-align: center;'>Nossos pratos</h2>
 <section id="index-view">
   {% for p in pratos %}
@@ -60,7 +59,6 @@
     </div>
     
     {% endfor %}
-    
   <!-- Modal Structure -->
   <div id="modal-carrinho" class="modal">
     <form action='/pedidos/addpedido/' method="POST">
@@ -68,6 +66,7 @@
       <div class="modal-content">
         
         <h4>Seu Pedido</h4>
+        <div v-show="pedido.length <= 0" style="border: 1px solid red; color: red; width: 100%; text-align: center;">Deve ser adiciona ao menos 1 item!</div>
         <div v-for="ped in pedido">
           <div style="align-items: center; display: flex; flex-wrap: wrap;">
             <div class="img-pedido" :style="{'background-image': 'url('+ped.image+')'}"></div>
@@ -94,7 +93,7 @@
             <label for="cpf" id="cpfLabel">CPF</label>
           </div>
           <div class="input-field" style="width: 60%;">
-            <input type="text" name="idname" id="idname" maxlength="30" v-on:blur="sendPedido" v-model="nome">
+            <input type="text" name="idname" id="idname" maxlength="30" @blur="sendPedido" v-model="nome">
             <label for="idname" id="nameLabel">Nome</label>
           </div>
         </div>
