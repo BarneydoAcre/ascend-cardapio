@@ -76,8 +76,12 @@ const myApp = {
                                 }
                                 this.linkOk = true
                                 
-                            } 
-                            this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0AEndereço: ${this.end}%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
+                            }
+                            if (this.retirada != true || this.local != true) {
+                                this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
+                            }else{
+                                this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0AEndereço: ${this.end}%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
+                            }
                             this.link = "https://api.whatsapp.com/send?"
                             this.linkFone = "phone=5567984540339&"
                         }

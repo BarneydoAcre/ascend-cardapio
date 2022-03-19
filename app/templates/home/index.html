@@ -5,6 +5,7 @@
 {% block title %}Cardápio{% endblock %} 
 
 {% block content %}
+{{time}} {{ gerencial }}
 <h2 style='width: 100%; text-align: center;'>Nossos pratos</h2>
 <section id="index-view">
   {% for p in pratos %}
@@ -20,7 +21,7 @@
       <div class="card-div-btn">
         {% for g in gerencial %}
         {% if time <= g.abertura or time >= g.fechamento %}
-        <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-fechado"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
+          <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-fechado"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
         {% else %}
           {% if p.disponibilidade %}
           <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal{{p.id}}"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
@@ -89,11 +90,11 @@
         </div>
         <div style="display: flex; align-items: center;">
           <div class="input-field" style="width: 30%; margin-right: 10%;  ">
-            <input type="text" name="cpf" id="cpf" maxlength="14"v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
+            <input type="text" name="cpf" id="cpf" maxlength="14" @blur="sendPedido" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
             <label for="cpf" id="cpfLabel">CPF</label>
           </div>
           <div class="input-field" style="width: 60%;">
-            <input type="text" name="idname" id="idname" maxlength="30" v-model="nome">
+            <input type="text" name="idname" id="idname" maxlength="30" v-on:blur="sendPedido" v-model="nome">
             <label for="idname" id="nameLabel">Nome</label>
           </div>
         </div>

@@ -8,8 +8,7 @@ from datetime import datetime, timezone, timedelta
 
 def index(request):
     db = {}
-    timezone(timedelta(hours=-3))
-    db['time'] = int(datetime.now().strftime("%H:%M").split(':')[0])
+    db['time'] = int(datetime.now(timezone(timedelta(hours=-4))).strftime("%H:%M").split(':')[0])
     db['gerencial'] = models.Gerencial.objects.all()
     db['pratos'] = models.Prato.objects.all()
     return render(request, 'home/index.html', db)
