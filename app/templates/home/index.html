@@ -18,8 +18,7 @@
         </p>
       </div>
       <div class="card-div-btn">
-        {% for g in gerencial %}
-        {% if time <= g.abertura or time >= g.fechamento %}
+        {% if time <= gerencial.abertura or time >= gerencial.fechamento %}
           <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-fechado"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
         {% else %}
           {% if p.disponibilidade %}
@@ -28,7 +27,6 @@
           <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-indisponivel"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
           {% endif %}
         {% endif %}
-        {% endfor %}
       </div>
     </div>
     <div id="modal{{p.id}}" class="modal">
@@ -90,7 +88,7 @@
         <div style="display: flex; align-items: center;">
           <div class="input-field" style="width: 30%; margin-right: 10%;  ">
             <input type="text" name="cpf" id="cpf" maxlength="14" @blur="sendPedido" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
-            <label for="cpf" id="cpfLabel">CPF</label>
+            <label for="cpf" id="cpfLabel">CPF</label>[[ cpfLength]]
           </div>
           <div class="input-field" style="width: 60%;">
             <input type="text" name="idname" id="idname" maxlength="30" @blur="sendPedido" v-model="nome">
@@ -140,28 +138,24 @@
 
   <!-- MODAL FECHADO -->
   <div id="modal-fechado" class="modal">
-    {% for g in gerencial %}
     <div class="modal-content">
       <div style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <h5>Fechamos às {{ g.fechamento }} horas</h5>
-        <h6>Abriremos novamente as {{ g.abertura }} horas!</h6>
+        <h5>Fechamos às {{ gerencial.fechamento }} horas</h5>
+        <h6>Abriremos novamente as {{ gerencial.abertura }} horas!</h6>
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn modal-close">Fechar</button>
     </div>
-    {% endfor %}
   </div>
 </section>
 
 <div class="fixed-action-btn">
-  {% for g in gerencial %}
-    {% if time <= g.abertura or time >= g.fechamento %}
+    {% if time <= gerencial.abertura or time >= gerencial.fechamento %}
     <a class="btn-floating btn-large red pulse modal-trigger" data-target="modal-fechado">
     {% else %}
     <a class="btn-floating btn-large red pulse modal-trigger" data-target="modal-carrinho">
     {% endif %}
-  {% endfor %}
     <i class="large material-icons">shopping_basket</i>
   </a>
 </div>

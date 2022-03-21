@@ -9,7 +9,15 @@ from datetime import datetime, timezone, timedelta
 def index(request):
     db = {}
     db['time'] = int(datetime.now(timezone(timedelta(hours=-4))).strftime("%H:%M").split(':')[0])
-    db['gerencial'] = models.Gerencial.objects.all()
+    ger = {}
+    for g in models.Gerencial.objects.all():
+        ger['abertura'] = int(g.abertura)
+        ger['fechamento'] = int(g.fechamento)
+        ger['logo'] = g.logo
+        ger['imagem'] = g.main_image
+    db['gerencial'] = ger
+    
+        
     db['pratos'] = models.Prato.objects.all()
     return render(request, 'home/index.html', db)
 

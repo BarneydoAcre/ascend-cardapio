@@ -8,7 +8,7 @@ const myApp = {
             maionese: false, //ok
             total: null, //ok
             cpf: null, //ok
-            cpfLength: null, //ok
+            cpfLength: 0, //ok
             nome: null, //ok
             entrega: true, //ok
             retirada: false, //ok
@@ -32,7 +32,6 @@ const myApp = {
             this.total = this.total + res[0].valor * this.qtd
             
             this.pedido.push(res[0])
-            this.pedidoLength = this.pedido.length
 
             this.qtd = null
             this.maionese = false
@@ -84,7 +83,7 @@ const myApp = {
                                     
                                 }
                                 if (this.entrega == true) {
-                                    this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
+                                    this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ANome: ${this.nome}%0ACPF: ${this.cpf}%0A%0AItens:%0A${s}`
                                 }else{
                                     this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ANome: ${this.nome}%0A%0AItens:%0A${s}`
                                 }
@@ -163,7 +162,7 @@ const myApp = {
                     self.cpf.value = self.cpf.value + '-'
                 }
             }
-            this.cpfLength = self.cpf.value
+            this.cpfLength = self.cpf.value.length
         }
     }
 }

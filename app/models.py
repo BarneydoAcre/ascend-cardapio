@@ -27,6 +27,8 @@ class Pedido(models.Model):
 class Gerencial(models.Model):
     abertura = models.IntegerField(verbose_name='Abertura', default=18)
     fechamento = models.IntegerField(verbose_name='Fechamento', default=22)
+    logo = models.TextField(blank=True)
+    main_image = models.TextField(blank=True)
 
     class Meta:
         verbose_name_plural = 'Gerencial'
