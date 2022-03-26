@@ -41,6 +41,9 @@
     width: 80px;
     height: 50px;
 }
+.card-btn:active {
+    background-color: #222;
+}
 
 .pulse::before{
     animation: pulse-animation 3s cubic-bezier(0.24, 0, 0.38, 9) infinite;

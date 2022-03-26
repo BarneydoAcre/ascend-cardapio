@@ -8,27 +8,30 @@
 <h2 style='width: 100%; text-align: center;'>Nossos pratos</h2>
 <section id="index-view">
   {% for p in pratos %}
-    <div class="card">
-      <div class="card-img" style="background-image: url('{{ p.image }}');"></div>
-      <div class="card-data">
-        <h5 class="card-data-title">{{ p.name }}</h5>
-        <p class="card-data-desc">{{ p.desc }}</p>
-        <p class="card-data-ingredients">
-          <strong>Ingredientes: </strong><br>{{ p.ingredients }}
-        </p>
+  {% if time >= gerencial.abertura or time <= gerencial.fechamento %}
+    {% if p.disponibilidade %}
+    <a class="modal-trigger" data-target="modal{{p.id}}" style="color: black; cursor: pointer;">
+    {% else %}
+    <a class="modal-trigger" data-target="modal-indisponivel" style="color: black; cursor: pointer;">
+    {% endif %}
+  {% else %}
+    <a class="modal-trigger" data-target="modal-fechado" style="color: black; cursor: pointer;">
+  {% endif %}
+      <div class="card">
+        <div class="card-img" style="background-image: url('{{ p.image }}');"></div>
+        <div class="card-data">
+          <h5 class="card-data-title">{{ p.name }}</h5>
+          <p class="card-data-desc">{{ p.desc }}</p>
+          <p class="card-data-ingredients">
+            <strong>Ingredientes: </strong><br>{{ p.ingredients }}
+          </p>
+        </div>
+        <div class="card-div-btn">
+          <button class="card-btn pulse" style="z-index: 100;"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
+        </div>
       </div>
-      <div class="card-div-btn">
-        {% if time <= gerencial.abertura or time >= gerencial.fechamento %}
-          <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-fechado"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
-        {% else %}
-          {% if p.disponibilidade %}
-          <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal{{p.id}}"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
-          {% else %}
-          <button class="card-btn pulse modal-trigger" style="z-index: 100;" data-target="modal-indisponivel"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>
-          {% endif %}
-        {% endif %}
-      </div>
-    </div>
+    </a>
+
     <div id="modal{{p.id}}" class="modal">
       <div class="modal-content">
         <h4>{{ p.name }}</h4>
@@ -88,7 +91,7 @@
         </div>
         <div style="display: flex; align-items: center;">
           <div class="input-field" style="width: 30%; margin-right: 10%;  ">
-            <input type="text" name="cpf" id="cpf" maxlength="14" @blur="cpfValidate" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
+            <input type="text" name="cpf" id="cpf" maxlength="14" @blur="cpfValidate" @blur="sendPedido" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
             <label for="cpf" id="cpfLabel">CPF</label>
           </div>
           <div class="input-field" style="width: 60%;">
@@ -98,35 +101,35 @@
         </div>
         <div class="forma-retirada">
           <label style="display: flex; align-items: center;">
-            <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="entrega">
+            <input type="checkbox" class="filled-in" @click="retiradaForma" @click="sendPedido" v-model="entrega">
             <span>Entrega?</span>
           </label>
           <label style="display: flex; align-items: center;">
-            <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="retirada">
+            <input type="checkbox" class="filled-in" @click="retiradaForma" @click="sendPedido" v-model="retirada">
             <span>Retirar no local?</span>
           </label>
           <label style="display: flex; align-items: center;">
-            <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="local">
+            <input type="checkbox" class="filled-in" @click="retiradaForma" @click="sendPedido" v-model="local">
             <span>Comer no local?</span>
           </label>
         </div>
         <div v-show="entrega">
           <div class="input-field">
-            <input type="text" name="rua" id="rua" maxlength="50" v-model="end">
+            <input type="text" name="rua" @blur="sendPedido" id="rua" maxlength="50" v-model="end">
             <label for="rua">Rua/Bairro/Nº</label>
           </div>
 
           <div class="forma-pagamento">
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="pagamentoForma" v-model="dinheiro">
+              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="dinheiro">
               <span>Dinheiro</span>
             </label>
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="pagamentoForma" v-model="debito">
+              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="debito">
               <span>Débito</span>
             </label>
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="pagamentoForma" v-model="credito">
+              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="credito">
               <span>Crédito</span>
             </label>
         </div>

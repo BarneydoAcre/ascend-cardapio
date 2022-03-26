@@ -111,7 +111,7 @@ const myApp = {
             if (this.pedido.length <= 0) {return false;}
             if (this.nome != null && this.nome != "") {
                 if (this.entrega != false || this.retirada != false || this.local != false) {  
-                    if (this.pedido.length >= 0) {
+                    if (this.pedido.length > 0) {
                         let s = null
                         for (let i = 0; i < this.pedido.length; i++) {
                             console.log('14')
