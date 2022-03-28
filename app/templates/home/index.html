@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Cardápio{% endblock %} 
+{% block title %}{{ gerencial.nome_estabelecimento }}{% endblock %} 
 
 {% block content %}
 <h2 style='width: 100%; text-align: center;'>Nossos pratos</h2>
@@ -22,9 +22,11 @@
         <div class="card-data">
           <h5 class="card-data-title">{{ p.name }}</h5>
           <p class="card-data-desc">{{ p.desc }}</p>
+          {% if p.ingredients %}
           <p class="card-data-ingredients">
             <strong>Ingredientes: </strong><br>{{ p.ingredients }}
           </p>
+          {% endif %}
         </div>
         <div class="card-div-btn">
           <button class="card-btn pulse" style="z-index: 100;"><b>R$ {{ p.value }}</b><!--<span class="material-icons" style="font-size: 48px;">shopping_basket</span>--></button>

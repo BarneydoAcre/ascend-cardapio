@@ -3,7 +3,7 @@ from django.db import models
 class Prato(models.Model):
     name = models.CharField(verbose_name="Nome", max_length = 30)
     desc = models.CharField(verbose_name="Descrição", max_length = 60)
-    ingredients = models.CharField(verbose_name="Ingredientes", max_length = 100)
+    ingredients = models.CharField(verbose_name="Ingredientes", max_length = 100, blank=True)
     value = models.FloatField(verbose_name="Valor")
     disponibilidade = models.BooleanField(verbose_name="Disponível", default=True)
 
@@ -32,7 +32,7 @@ class Gerencial(models.Model):
     main_image = models.TextField(verbose_name="Imagem Principal", blank=True)
 
     link_instagram = models.TextField(verbose_name="Link Instagram", blank=True)
-    link_whatsapp = models.TextField(verbose_name="Link WhatsApp", blank=True)
+    link_whatsapp = models.CharField(verbose_name="Link WhatsApp", max_length=13, blank=True)
 
     class Meta:
         verbose_name_plural = 'Gerencial'

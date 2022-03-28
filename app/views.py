@@ -15,6 +15,9 @@ def index(request):
         ger['fechamento'] = int(g.fechamento)
         ger['logo'] = g.logo
         ger['imagem'] = g.main_image
+        ger['nome_estabelecimento'] = g.nome_estabelecimento
+        ger['whatsapp'] = g.link_whatsapp
+        ger['instagram'] = g.link_instagram
     db['gerencial'] = ger
     
         
