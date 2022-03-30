@@ -160,7 +160,6 @@ const myApp = {
             this.retirada = false
             this.local = false
             this.end = null
-            this.formaPagamento = null
             this.dinheiro = false
             this.debito = false
             this.credito = false

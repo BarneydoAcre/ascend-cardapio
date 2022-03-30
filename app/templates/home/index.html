@@ -115,7 +115,7 @@
               <input type="checkbox" class="filled-in" @click="retiradaForma" @click="sendPedido" v-model="local">
               <span>Comer no local?</span>
             </label>
-          </div>
+          </div>[[ formaPagamento ]]
           <div class="forma-pagamento">
             <label style="display: flex; align-items: center;">
               <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="dinheiro">
@@ -133,7 +133,7 @@
         </div>
         <div v-show="entrega">
           <div class="input-field">
-            <input type="text" name="rua" @blur="sendPedido" id="rua" maxlength="50" v-model="end">
+            <input type="text" name="rua" id="rua" maxlength="50" v-model="end">
             <label for="rua">Rua/Bairro/Nº</label>
           </div>
 
