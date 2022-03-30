@@ -121,9 +121,9 @@ const myApp = {
                         let s = null
                         for (let i = 0; i < this.pedido.length; i++) {
                             if (s == null) {
-                                s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - ${this.pedido[i].qtd*this.pedido[i].total}`
+                                s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - R$ ${this.pedido[i].qtd*this.pedido[i].total}`
                             }else{
-                                s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - ${this.pedido[i].qtd*this.pedido[i].total}`
+                                s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - R$ ${this.pedido[i].qtd*this.pedido[i].total}`
                             }
                         }
                         if (this.entrega == true) {

@@ -73,6 +73,7 @@
 .forma-pagamento {
     display: flex; 
     justify-content: space-evenly;
+    flex-direction: column;
 }
 
 @media only screen and (max-width: 550px) {
