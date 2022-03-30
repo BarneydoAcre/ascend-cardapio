@@ -26,3 +26,5 @@ site para acessar: http://ascend-pedidos.herokuapp.com
 
 - v1.00.004
 - CORREÇÃO* Inserindo preço no recebimento do pedido
+- ALTERAÇÃO* Novos ícones para rodapé do site
+- NOVO* Crédito de desenvolvimento inserido no rodapé do site

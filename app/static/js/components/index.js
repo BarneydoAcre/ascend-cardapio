@@ -164,7 +164,6 @@ const myApp = {
             this.dinheiro = false
             this.debito = false
             this.credito = false
-            this.link = null
             this.linkText = null
             this.linkOk = false
             self.cpf.value = null
