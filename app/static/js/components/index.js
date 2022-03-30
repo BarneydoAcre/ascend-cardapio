@@ -32,7 +32,7 @@ const myApp = {
     async mounted() {
         const req = await fetch('/api/whatsnum/', {method: 'GET'})
         const res = await req.json()
-        this.link = `https://api.whatsapp.com/send?phone${res[0].whats}&`
+        this.link = `https://api.whatsapp.com/send?phone=${res[0].whats}&`
     },
     methods: {
                 async pedidos(id) {
@@ -121,17 +121,17 @@ const myApp = {
                         let s = null
                         for (let i = 0; i < this.pedido.length; i++) {
                             if (s == null) {
-                                s = `${this.pedido[i].qtd} - ${this.pedido[i].title}`
+                                s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - ${this.pedido[i].qtd*this.pedido[i].total}`
                             }else{
-                                s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title}`
+                                s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - ${this.pedido[i].qtd*this.pedido[i].total}`
                             }
-                            this.linkOk = true
                         }
                         if (this.entrega == true) {
                             this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AEndereço: ${this.end}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
                         }else{
                             this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
                         }
+                        this.linkOk = true
                     }
                 }
                 self.idname.style = "border-bottom: 1px solid #9e9e9e;"
@@ -164,7 +164,7 @@ const myApp = {
             this.dinheiro = false
             this.debito = false
             this.credito = false
-            this.link = "https://api.whatsapp.com/send?phone=5567984540339&"
+            this.link = null
             this.linkText = null
             this.linkOk = false
             self.cpf.value = null

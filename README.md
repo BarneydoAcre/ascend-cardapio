@@ -23,3 +23,6 @@ site para acessar: http://ascend-pedidos.herokuapp.com
 - NOVO* Novos parâmetros na aba gerencial(Número telefone, instagram, nome do estabelecimento)
 - CORREÇÃO* Agora as mensagens chegam corretamente para o número informado na aba gerencial
 - CORREÇÃO* Era necessário clicar duas vezes para gerar o pedido ao inserir primeiro os dados depois os produtos.
+
+- v1.00.004
+- CORREÇÃO* Inserindo preço no recebimento do pedido
