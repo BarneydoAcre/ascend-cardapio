@@ -11,5 +11,6 @@ urlpatterns = [
     ###############
     ##### API #####
     ###############
-    path('api/pratos/', views.getAllPratos, name="apiPratos"),
+    path('api/produtos/', views.getAllProdutos, name="apiPratos"),
+    path('api/whatsnum/', views.getWhatsNum, name="apiWhatsNum"),
 ]

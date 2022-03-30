@@ -16,12 +16,13 @@ def index(request):
         ger['logo'] = g.logo
         ger['imagem'] = g.main_image
         ger['nome_estabelecimento'] = g.nome_estabelecimento
-        ger['whatsapp'] = g.link_whatsapp
+        ger['whatsapp'] = g.num_whatsapp
         ger['instagram'] = g.link_instagram
     db['gerencial'] = ger
     
         
-    db['pratos'] = models.Prato.objects.all()
+    db['produtos'] = models.Produto.objects.all()
+    print(db['produtos'])
     return render(request, 'home/index.html', db)
 
 def promocao(request):
@@ -32,7 +33,7 @@ def pedidos(request):
 
 def addPedidos(request):
     if request.method == "POST":
-        p = models.Pedido( prato=request.POST['prato'], cpf=request.POST['name']).save()
+        p = models.Pedido( produto=request.POST['produto'], cpf=request.POST['name']).save()
     return redirect('/')
 
 
@@ -40,10 +41,17 @@ def addPedidos(request):
 ###############
 ##### API #####
 ###############
-def getAllPratos(request):
+def getAllProdutos(request):
     data = []
-    for p in models.Prato.objects.filter(id=request.GET['id']):
+    for p in models.Produto.objects.filter(id=request.GET['id']):
         data.append({"id": p.id, "title": p.name,"desc": p.desc, "ingred": p.ingredients, "valor": p.value, "image": str(p.image)})
+    return HttpResponse(json.dumps(data))
+
+def getWhatsNum(request):
+    data = []
+    for g in models.Gerencial.objects.all():
+        print(g.num_whatsapp)
+        data.append({"whats": g.num_whatsapp})
     return HttpResponse(json.dumps(data))
 
 def createPedido(request):

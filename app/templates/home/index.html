@@ -5,9 +5,9 @@
 {% block title %}{{ gerencial.nome_estabelecimento }}{% endblock %} 
 
 {% block content %}
-<h2 style='width: 100%; text-align: center;'>Nossos pratos</h2>
+<h2 style='width: 100%; text-align: center;'>Nossos produtos</h2>
 <section id="index-view">
-  {% for p in pratos %}
+  {% for p in produtos %}
   {% if time >= gerencial.abertura or time <= gerencial.fechamento %}
     {% if p.disponibilidade %}
     <a class="modal-trigger" data-target="modal{{p.id}}" style="color: black; cursor: pointer;">

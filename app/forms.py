@@ -6,4 +6,4 @@ class PedidoForm(forms.ModelForm):
 
     class Meta:
         model = Pedido
-        fields = ('cpf','prato')
+        fields = ('cpf','produto')

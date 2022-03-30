@@ -24,14 +24,19 @@ const myApp = {
             debito: false,
             credito: false, 
             //link
-            link: "https://api.whatsapp.com/send?phone=5567984540339&", //ok
+            link: null, //ok
             linkText: null, //ok
-            linkOk: false //ok
+            linkOk: false, //ok
         }
     },
+    async mounted() {
+        const req = await fetch('/api/whatsnum/', {method: 'GET'})
+        const res = await req.json()
+        this.link = `https://api.whatsapp.com/send?phone${res[0].whats}&`
+    },
     methods: {
-        async pedidos(id) {
-            const req = await fetch("/api/pratos/?id="+id, {method: 'GET'})
+                async pedidos(id) {
+            const req = await fetch("/api/produtos/?id="+id, {method: 'GET'})
             const res = await req.json()
             
             if (this.qtd != null && this.qtd != 0 && this.qtd != '0') {
@@ -53,6 +58,7 @@ const myApp = {
                     self.cpfLabel.innerHTML = "CPF vázio!"
                 }
             }
+            this.sendPedido()
         },
 
         async retiradaForma () {
@@ -114,7 +120,6 @@ const myApp = {
                     if (this.pedido.length > 0) {
                         let s = null
                         for (let i = 0; i < this.pedido.length; i++) {
-                            console.log('14')
                             if (s == null) {
                                 s = `${this.pedido[i].qtd} - ${this.pedido[i].title}`
                             }else{
@@ -125,7 +130,7 @@ const myApp = {
                         if (this.entrega == true) {
                             this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AEndereço: ${this.end}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
                         }else{
-                            this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
+                            this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
                         }
                     }
                 }
@@ -193,16 +198,6 @@ const myApp = {
         }
     }
 }
-    // methods: {
-    //     async getPratos() {
-    //        const req = await fetch("/api/pratos/")
-    //        const res = await req.json()
-    //        this.prato = res
-    //     }
-    // },
-    // mounted() {
-    //     this.getPratos()
-    // }
 const app = Vue.createApp(myApp)
 
 app.mount('#app')
