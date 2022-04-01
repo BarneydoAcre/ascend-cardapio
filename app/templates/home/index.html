@@ -91,6 +91,8 @@
         <div class="card-data">
           <h6 class="card-data-title"><strong>{{ p.name }}</strong></h6>
         </div>
+
+
         <div style="display: flex; align-items: center;">
           <div class="input-field" style="width: 30%; margin-right: 10%;  ">
             <input type="text" name="cpf" id="cpf" maxlength="14" @blur="cpfValidate" @blur="sendPedido" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
@@ -101,21 +103,27 @@
             <label for="idname" id="nameLabel">Nome</label>
           </div>
         </div>
+
+
         <div style="display: flex; justify-content: space-evenly;">
           <div class="forma-retirada">
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="retiradaForma" @click="sendPedido" v-model="entrega">
+              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="entrega">
               <span>Entrega?</span>
             </label>
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="retiradaForma" @click="sendPedido" v-model="retirada">
+              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="retirada">
               <span>Retirar no local?</span>
             </label>
+            {% if gerencial.tipo_servico == 1 %}
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="retiradaForma" @click="sendPedido" v-model="local">
+              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="local">
               <span>Comer no local?</span>
             </label>
-          </div>[[ formaPagamento ]]
+            {% endif %}
+          </div>
+          
+
           <div class="forma-pagamento">
             <label style="display: flex; align-items: center;">
               <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="dinheiro">
@@ -130,6 +138,8 @@
               <span>Crédito</span>
             </label>
           </div>
+
+
         </div>
         <div v-show="entrega">
           <div class="input-field">

@@ -13,7 +13,7 @@ const myApp = {
             cpfLength: 0, //ok
             nome: null, //ok
             //entrega
-            formaEntrega: null,
+            formaEntrega: "teste",
             entrega: false, //ok
             retirada: false, //ok
             local: false, //ok
@@ -35,7 +35,7 @@ const myApp = {
         this.link = `https://api.whatsapp.com/send?phone=${res[0].whats}&`
     },
     methods: {
-                async pedidos(id) {
+        async pedidos(id) {
             const req = await fetch("/api/produtos/?id="+id, {method: 'GET'})
             const res = await req.json()
             
@@ -61,13 +61,14 @@ const myApp = {
             this.sendPedido()
         },
 
-        async retiradaForma () {
+        async retiradaForma() {
             if (this.entrega == true || this.retirada == true || this.local == true) {
                 this.entrega = false
                 this.retirada = false
                 this.local = false
             }
         },
+
         async pagamentoForma () {
             if (this.dinheiro == true || this.debito == true || this.credito == true) {
                 this.dinheiro = false
@@ -97,6 +98,7 @@ const myApp = {
                 self.cpfLabel.innerHTML = "CPF vázio!"
             }
         },
+
         async sendPedido() {
             if (this.entrega == true){
                 this.formaEntrega = `Para entrega`
@@ -106,6 +108,7 @@ const myApp = {
                 this.formaEntrega = `Comer no local`
             }
 
+            
             if (this.dinheiro == true){
                 this.formaPagamento = `Dinheiro`
             }if (this.debito == true) {
@@ -113,34 +116,42 @@ const myApp = {
             }if (this.credito == true) {
                 this.formaPagamento = `Crédito`
             }
+            
 
             if (this.pedido.length <= 0) {return false;}
+
             if (this.nome != null && this.nome != "") {
-                if (this.entrega != false || this.retirada != false || this.local != false) {  
-                    if (this.pedido.length > 0) {
-                        let s = null
-                        for (let i = 0; i < this.pedido.length; i++) {
-                            if (s == null) {
-                                s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - R$ ${this.pedido[i].qtd*this.pedido[i].total}`
-                            }else{
-                                s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - R$ ${this.pedido[i].qtd*this.pedido[i].total}`
-                            }
-                        }
-                        if (this.entrega == true) {
-                            this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AEndereço: ${this.end}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
-                        }else{
-                            this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
-                        }
-                        this.linkOk = true
-                    }
-                }
-                self.idname.style = "border-bottom: 1px solid #9e9e9e;"
-                self.nameLabel.style = "color: #9e9e9e;"
+                self.idname.style = "border-bottom: 1px solid green;"
+                self.nameLabel.style = "color: green;"
                 self.nameLabel.innerHTML = "Nome"
+
             }else{
                 self.idname.style = "border-bottom: 1px solid red"
                 self.nameLabel.style = "color: red;"
                 self.nameLabel.innerHTML = "Nome vázio"
+
+                return false;
+            }
+
+            if (this.entrega != false || this.retirada != false || this.local != false) {  
+                
+            }
+
+            if (this.pedido.length > 0) {
+                let s = null
+                for (let i = 0; i < this.pedido.length; i++) {
+                    if (s == null) {
+                        s = `${this.pedido[i].qtd} - ${this.pedido[i].title} - R$ ${this.pedido[i].qtd*this.pedido[i].total}`
+                    }else{
+                        s = s + `,%0A${this.pedido[i].qtd} - ${this.pedido[i].title} - R$ ${this.pedido[i].qtd*this.pedido[i].total}`
+                    }
+                }
+                if (this.entrega == true) {
+                    this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AEndereço: ${this.end}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
+                }else{
+                    this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
+                }
+                this.linkOk = true
             }
         },
         async resetVariables() {

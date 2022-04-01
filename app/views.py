@@ -13,6 +13,7 @@ def index(request):
     for g in models.Gerencial.objects.all():
         ger['abertura'] = int(g.abertura)
         ger['fechamento'] = int(g.fechamento)
+        ger['tipo_servico'] = g.service
         ger['logo'] = g.logo
         ger['imagem'] = g.main_image
         ger['nome_estabelecimento'] = g.nome_estabelecimento
@@ -22,7 +23,6 @@ def index(request):
     
         
     db['produtos'] = models.Produto.objects.all()
-    print(db['produtos'])
     return render(request, 'home/index.html', db)
 
 def promocao(request):

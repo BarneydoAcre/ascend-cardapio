@@ -1,15 +1,5 @@
-import environ
-
 from cardapio.settings.base import *
 
-env = environ.Env()
+DEBUG = True
 
-DEBUG = env.bool("DEBUG", False)
-
-SECRET_KEY = env("SECRET_KEY")
-
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-
-DATABASES = {
-    "default": env.db(),
-}
+SECRET_KEY = "django-insecure-mn5-(&#4kx!-v!dxp-oeh$6gmjfevqp*e=iz(5hktm-3-x)7#)"

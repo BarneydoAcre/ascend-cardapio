@@ -24,15 +24,20 @@ class Pedido(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
 class Gerencial(models.Model):
+    choices = [
+        (1, 'Food Service'),
+        (2, 'Varejo Service'),
+        ]
     abertura = models.IntegerField(verbose_name='Abertura', default=18)
     fechamento = models.IntegerField(verbose_name='Fechamento', default=22)
+    service = models.IntegerField(verbose_name="Tipo de serviço", choices=choices, blank=False)
 
     logo = models.TextField(verbose_name="Icone Logo", blank=True)
     nome_estabelecimento = models.CharField(verbose_name="Nome do Estabelecimento", max_length=16, blank=False)
     main_image = models.TextField(verbose_name="Imagem Principal", blank=True)
 
     link_instagram = models.CharField(verbose_name="Link Instagram", max_length=255, blank=True)
-    num_whatsapp = models.CharField(verbose_name="Link WhatsApp", max_length=13, blank=True)
+    num_whatsapp = models.CharField(verbose_name="Nº WhatsApp", max_length=13, blank=True)
 
     class Meta:
         verbose_name_plural = 'Gerencial'
