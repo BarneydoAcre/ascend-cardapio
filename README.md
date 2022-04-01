@@ -29,3 +29,6 @@ site para acessar: http://ascend-pedidos.herokuapp.com
 *v1.00.005*
 - CORREÇÃO* Ao gerar venda com entrega, não enviava 'forma de pagamento'
 - MELHORIA* Selecionar opção de modo de venda (Foods, Varejo)
+
+*v1.00.006*
+- MELHORIA* Botão "Quantidade de itens" melhorado visualmente.

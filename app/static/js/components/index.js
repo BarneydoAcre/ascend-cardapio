@@ -4,7 +4,7 @@ const myApp = {
         return {
             pedido: [], //ok
             pedidoLength: 0,
-            qtd: null, //ok
+            qtd: 0, //ok
             //////////////////////// maionese: false, //ok
             total: null, //ok
             //dados
@@ -35,6 +35,14 @@ const myApp = {
         this.link = `https://api.whatsapp.com/send?phone=${res[0].whats}&`
     },
     methods: {
+        async addQuantidade() {
+            this.qtd = this.qtd + 1
+        },
+
+        async remQuantidade() {
+            this.qtd = this.qtd - 1
+        },
+
         async pedidos(id) {
             const req = await fetch("/api/produtos/?id="+id, {method: 'GET'})
             const res = await req.json()
@@ -116,7 +124,7 @@ const myApp = {
             }if (this.credito == true) {
                 this.formaPagamento = `Crédito`
             }
-            
+
 
             if (this.pedido.length <= 0) {return false;}
 
