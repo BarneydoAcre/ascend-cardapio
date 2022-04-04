@@ -105,7 +105,7 @@
             <label for="cpf" id="cpfLabel">CPF</label>
           </div>
           <div class="input-field" style="width: 60%;">
-            <input type="text" name="idname" id="idname" maxlength="30" @blur="sendPedido" v-model="nome">
+            <input type="text" name="idname" id="idname" maxlength="30" @blur="nomeValidate" v-model="nome">
             <label for="idname" id="nameLabel">Nome</label>
           </div>
         </div>
@@ -157,8 +157,8 @@
       </div>
       <div class="modal-footer">
         <a class="btn modal-close" style="z-index: 100; background-color: #222; margin-right: 16px;" data-target="modal1">Voltar</a>
-        <a v-if="linkOk == true" @click="resetVariables" :href="link+linkText" target="_blank" @click="sendPedido" class="modal-close btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
-        <a v-else target="_blank" @click="sendPedido" class="btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
+        <a v-if="linkOk == true" @click="sendPedido" @click="resetVariables" href="#" target="_blank" class="modal-close btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
+        <a v-else @click="sendPedido" class="btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
       </div>
     </form>
   </div>

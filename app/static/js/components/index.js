@@ -69,7 +69,7 @@ const myApp = {
             this.sendPedido()
         },
 
-        async retiradaForma() {
+        retiradaForma() {
             if (this.entrega == true || this.retirada == true || this.local == true) {
                 this.entrega = false
                 this.retirada = false
@@ -77,7 +77,7 @@ const myApp = {
             }
         },
 
-        async pagamentoForma () {
+        pagamentoForma () {
             if (this.dinheiro == true || this.debito == true || this.credito == true) {
                 this.dinheiro = false
                 this.debito = false
@@ -85,7 +85,7 @@ const myApp = {
             }
         },
 
-        async cpfValidate() {
+        cpfValidate() {
             if (this.cpf != null && this.cpf != "") {
                 if (this.cpfLength == 14) {
                     ////////////////////
@@ -95,55 +95,69 @@ const myApp = {
                     self.cpf.style = "border-bottom: 1px solid #9e9e9e;"
                     self.cpfLabel.style = "color: #9e9e9e;"
                     self.cpfLabel.innerHTML = "CPF"
+                    return true;
                 }else{
                     self.cpf.style = "border-bottom: 1px solid red;"
                     self.cpfLabel.style = "color: red;"
                     self.cpfLabel.innerHTML = "CPF deve conter 11 dígitos!"
+                    return false;
                 }
             }else {
-                self.cpf.style = "border-bottom: 2px solid red;"
+                self.cpf.style = "border-bottom: 1px solid red;"
                 self.cpfLabel.style = "color: red;"
                 self.cpfLabel.innerHTML = "CPF vázio!"
+                return false;
             }
         },
 
-        async sendPedido() {
-            if (this.entrega == true){
-                this.formaEntrega = `Para entrega`
-            }if (this.retirada == true) {
-                this.formaEntrega = `Retirada`
-            }if (this.local == true) {
-                this.formaEntrega = `Comer no local`
-            }
-
-            
-            if (this.dinheiro == true){
-                this.formaPagamento = `Dinheiro`
-            }if (this.debito == true) {
-                this.formaPagamento = `Débito`
-            }if (this.credito == true) {
-                this.formaPagamento = `Crédito`
-            }
-
-
-            if (this.pedido.length <= 0) {return false;}
-
+        nomeValidate() {
             if (this.nome != null && this.nome != "") {
                 self.idname.style = "border-bottom: 1px solid green;"
                 self.nameLabel.style = "color: green;"
                 self.nameLabel.innerHTML = "Nome"
-
+                return true;
             }else{
                 self.idname.style = "border-bottom: 1px solid red"
                 self.nameLabel.style = "color: red;"
                 self.nameLabel.innerHTML = "Nome vázio"
-
                 return false;
             }
+        },
 
-            if (this.entrega != false || this.retirada != false || this.local != false) {  
-                
+        entregaValidate() {
+            if (this.entrega == true){
+                this.formaEntrega = `Para entrega`
+                return true;
+            }if (this.retirada == true) {
+                this.formaEntrega = `Retirada`
+                return true;
+            }if (this.local == true) {
+                this.formaEntrega = `Comer no local`
+                return true;
             }
+            return false;
+        },
+
+        formaValidate() {
+            if (this.dinheiro == true){
+                this.formaPagamento = `Dinheiro`
+                return true;
+            }if (this.debito == true) {
+                this.formaPagamento = `Débito`
+                return true;
+            }if (this.credito == true) {
+                this.formaPagamento = `Crédito`
+                return true;
+            }
+            return false;
+        },
+
+        async sendPedido() {
+            if (this.cpfValidate() != true) {return false;}
+            if (this.nomeValidate() != true) {return false;}
+            if (this.entregaValidate() != true) {return false;}
+            if (this.formaValidate() != true) {return false;}
+            if (this.entrega != false || this.retirada != false || this.local != false) {}else{return false;}
 
             if (this.pedido.length > 0) {
                 let s = null
@@ -160,8 +174,12 @@ const myApp = {
                     this.linkText = `text=Boa noite, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
                 }
                 this.linkOk = true
+                window.open(this.link + this.linkText)
+            }else {
+                return false;// window.alert('Precisa ser adicionado ao menos um item ao pedido!')
             }
         },
+
         async resetVariables() {
             ///////////////////////
             /////////////////////// RESENTANDO VARIÁVEIS

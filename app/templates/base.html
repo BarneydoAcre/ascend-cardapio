@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br">
   <head>
     <title>{% block title %}{% endblock %}</title>
@@ -13,12 +14,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
   <!-- Materialize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{% static 'css/css/materialize.css' %}" type="text/css">
   <!-- Vue -->
   <script src="https://unpkg.com/vue@3"></script>
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  {% load static %}
   <link href="{% static 'css/main.css' %}" rel="stylesheet" />
   <link href="{% static 'css/header.css' %}" rel="stylesheet" />
   <link href="{% static 'css/footer.css' %}" rel="stylesheet" />
@@ -34,7 +34,7 @@
   </div>
     
     {% block script %}{% endblock %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{% static 'js/js/materialize.js' %}"></script>
     <script type="module" src="{% static 'js/materialize.js' %}"></script>
   </body>
 
