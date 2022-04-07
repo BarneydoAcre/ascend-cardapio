@@ -40,23 +40,34 @@ SECRET_KEY = get_random_secret_key()
 #############################
 DEBUG = True
 
-SECURE_HSTS_SECONDS = False
+# SECURE_HSTS_SECONDS = False
 
-SECURE_HSTS_PRELOAD = False
+# SECURE_HSTS_PRELOAD = False
 
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
-SECURE_SSL_REDIRECT = False
+# SECURE_SSL_REDIRECT = False
 
-SESSION_COOKIE_SECURE = False
+# SESSION_COOKIE_SECURE = False
 
-CSRF_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = [
     'https://ascend-pedidos.herokuapp.com',
     'ascend-pedidos.herokuapp.com'
 ]
 
+SECURE_HSTS_SECONDS = True
+
+SECURE_HSTS_PRELOAD = True
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_SSL_REDIRECT = True
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 INSTALLED_APPS = [
