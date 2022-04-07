@@ -12,62 +12,46 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import django_heroku
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-print(Path(__file__))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()
-# SECURITY WARNING: keep the secret key used in production secret!
 
-# DEBUG = False
+ALLOWED_HOSTS = ['https://ascend-pedidos.herokuapp.com', 'ascend-pedidos.herokuapp.com']
+method = 'p'
 
-# SECURE_HSTS_SECONDS = True
+if method == 'p':
+    DEBUG = False
 
-# SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_SECONDS = True
 
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
-# SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-# SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
 
-# CSRF_COOKIE_SECURE = True
-#############################
-DEBUG = True
+    SESSION_COOKIE_SECURE = True
 
-# SECURE_HSTS_SECONDS = False
+    CSRF_COOKIE_SECURE = True
 
-# SECURE_HSTS_PRELOAD = False
+elif method == 'd':
+    DEBUG = True
 
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_SECONDS = False
 
-# SECURE_SSL_REDIRECT = False
+    SECURE_HSTS_PRELOAD = False
 
-# SESSION_COOKIE_SECURE = False
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
-# CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
 
-ALLOWED_HOSTS = [
-    'https://ascend-pedidos.herokuapp.com',
-    'ascend-pedidos.herokuapp.com'
-]
+    SESSION_COOKIE_SECURE = False
 
-SECURE_HSTS_SECONDS = True
-
-SECURE_HSTS_PRELOAD = True
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-SECURE_SSL_REDIRECT = True
-
-SESSION_COOKIE_SECURE = True
-
-CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = False
+else:
+    exit()
 
 # Application definition
 INSTALLED_APPS = [
