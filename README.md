@@ -32,3 +32,6 @@ site para acessar: http://ascend-pedidos.herokuapp.com
 
 *v1.00.006*
 - MELHORIA* Botão "Quantidade de itens" melhorado visualmente.
+
+*v1.00.007*
+- MELHORA* Não é mais necessário clicar duas vezes para enviar o pedido

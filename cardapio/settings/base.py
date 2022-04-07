@@ -10,21 +10,37 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+from . import deploy
 import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print(Path(__file__))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-mn5-(&#4kx!-v!dxp-oeh$6gmjfevqp*e=iz(5hktm-3-x)7#)"
+SECRET_KEY = deploy.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG = deploy.DEBUG
+
+SECURE_HSTS_SECONDS = deploy.SECURE_HSTS_SECONDS
+
+SECURE_HSTS_PRELOAD = deploy.SECURE_HSTS_PRELOAD
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = deploy.SECURE_HSTS_INCLUDE_SUBDOMAINS
+
+SECURE_SSL_REDIRECT = deploy.SECURE_SSL_REDIRECT
+
+SESSION_COOKIE_SECURE = deploy.SESSION_COOKIE_SECURE
+
+CSRF_COOKIE_SECURE = deploy.CSRF_COOKIE_SECURE
 
 ALLOWED_HOSTS = [
     '',
@@ -51,7 +67,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 APPEND_SLASH=False
+
 ROOT_URLCONF = 'cardapio.urls'
 
 TEMPLATES = [
@@ -71,7 +89,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'cardapio.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
