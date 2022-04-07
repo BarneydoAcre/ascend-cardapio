@@ -30,7 +30,7 @@ if method == 'p':
 
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
 
     SESSION_COOKIE_SECURE = True
 
