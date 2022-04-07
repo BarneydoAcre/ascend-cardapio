@@ -22,25 +22,39 @@ print(Path(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
+from django.core.management.utils import get_random_secret_key
+SECRET_KEY = get_random_secret_key()
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = deploy.SECRET_KEY
+METHOD = 'P'
+if METHOD == 'P':
+    DEBUG = False
 
-# SECURITY WARNING: don't run with debug turned on in production!
+    SECURE_HSTS_SECONDS = True
 
-DEBUG = deploy.DEBUG
+    SECURE_HSTS_PRELOAD = True
 
-SECURE_HSTS_SECONDS = deploy.SECURE_HSTS_SECONDS
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-SECURE_HSTS_PRELOAD = deploy.SECURE_HSTS_PRELOAD
+    SECURE_SSL_REDIRECT = True
 
-SECURE_HSTS_INCLUDE_SUBDOMAINS = deploy.SECURE_HSTS_INCLUDE_SUBDOMAINS
+    SESSION_COOKIE_SECURE = True
 
-SECURE_SSL_REDIRECT = deploy.SECURE_SSL_REDIRECT
+    CSRF_COOKIE_SECURE = True
 
-SESSION_COOKIE_SECURE = deploy.SESSION_COOKIE_SECURE
+elif METHOD == 'D':
+    DEBUG = True
 
-CSRF_COOKIE_SECURE = deploy.CSRF_COOKIE_SECURE
+    SECURE_HSTS_SECONDS = False
+
+    SECURE_HSTS_PRELOAD = False
+
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+
+    SECURE_SSL_REDIRECT = False
+
+    SESSION_COOKIE_SECURE = False
+    
+    CSRF_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = [
     '',
