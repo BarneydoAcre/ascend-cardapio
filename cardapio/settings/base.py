@@ -24,33 +24,33 @@ from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()
 # SECURITY WARNING: keep the secret key used in production secret!
 
-DEBUG = False
+# DEBUG = False
 
-SECURE_HSTS_SECONDS = True
+# SECURE_HSTS_SECONDS = True
 
-SECURE_HSTS_PRELOAD = True
+# SECURE_HSTS_PRELOAD = True
 
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
 
-SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 
-CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 #############################
-# DEBUG = True
+DEBUG = True
 
-# SECURE_HSTS_SECONDS = False
+SECURE_HSTS_SECONDS = False
 
-# SECURE_HSTS_PRELOAD = False
+SECURE_HSTS_PRELOAD = False
 
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
-# SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = False
 
-# SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
-# CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = [
     'https://ascend-pedidos.herokuapp.com',
