@@ -23,36 +23,35 @@ print(Path(__file__))
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()
 # SECURITY WARNING: keep the secret key used in production secret!
-METHOD = 'P'
-if METHOD == 'P':
-    DEBUG = False
 
-    SECURE_HSTS_SECONDS = True
+DEBUG = False
 
-    SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_SECONDS = True
 
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
-    SECURE_SSL_REDIRECT = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-    SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
-    CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
-elif METHOD == 'D':
-    DEBUG = True
+CSRF_COOKIE_SECURE = True
 
-    SECURE_HSTS_SECONDS = False
+# elif METHOD == 'D':
+#     DEBUG = True
 
-    SECURE_HSTS_PRELOAD = False
+#     SECURE_HSTS_SECONDS = False
 
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+#     SECURE_HSTS_PRELOAD = False
 
-    SECURE_SSL_REDIRECT = False
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
-    SESSION_COOKIE_SECURE = False
+#     SECURE_SSL_REDIRECT = False
+
+#     SESSION_COOKIE_SECURE = False
     
-    CSRF_COOKIE_SECURE = False
+#     CSRF_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = [
     '',
