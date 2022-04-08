@@ -20,7 +20,7 @@ SECRET_KEY = get_random_secret_key()
 
 method = 'p'
 
-DEBUG = True if method == 'p' else True
+DEBUG = False if method == 'p' else True
 
 ALLOWED_HOSTS = []
 
