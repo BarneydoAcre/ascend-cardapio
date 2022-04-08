@@ -18,44 +18,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()
 
-ALLOWED_HOSTS = []
 method = 'p'
 
-if method == 'p':
-    DEBUG = False
+DEBUG = False if method == 'p' else True
 
-    SECURE_HSTS_SECONDS = True
+ALLOWED_HOSTS = []
 
-    SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_SECONDS = True
 
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
-    SECURE_SSL_REDIRECT = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-    SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True if method == 'p' else False
 
-    CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
-    STATIC_ROOT = "staticfiles/"
+CSRF_COOKIE_SECURE = True
 
-    STATIC_URL = "https://ascend-pedidos.herokuapp.com/static/"
+STATIC_ROOT = 'staticfiles/'
 
-elif method == 'd':
-    DEBUG = True
-
-    SECURE_HSTS_SECONDS = False
-
-    SECURE_HSTS_PRELOAD = False
-
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-
-    SECURE_SSL_REDIRECT = False
-
-    SESSION_COOKIE_SECURE = False
-
-    CSRF_COOKIE_SECURE = False
-else:
-    exit()
+STATIC_URL = 'https://shrouded-savannah-29391.herokuapp.com/static/'
 
 # Application definition
 INSTALLED_APPS = [
