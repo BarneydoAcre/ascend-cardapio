@@ -38,7 +38,8 @@ CSRF_COOKIE_SECURE = True
 
 STATIC_ROOT = 'staticfiles/'
 
-STATIC_URL = 'https://shrouded-savannah-29391.herokuapp.com/static/'
+# STATIC_URL = 'https://shrouded-savannah-29391.herokuapp.com/static/'
+STATIC_URL = '127.0.0.1:8000/static/'
 
 # Application definition
 INSTALLED_APPS = [

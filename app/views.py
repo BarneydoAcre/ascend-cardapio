@@ -23,7 +23,7 @@ def index(request):
     
         
     db['produtos'] = models.Produto.objects.all()
-    return render(request, 'test.html', db)
+    return render(request, 'home/index.html', db)
     # return render(request, 'home/index.html', db)
 
 def promocao(request):
