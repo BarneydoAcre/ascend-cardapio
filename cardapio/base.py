@@ -32,7 +32,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 SECURE_SSL_REDIRECT = True if method == 'p' else False
 
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False #pode bugar
 
 CSRF_COOKIE_SECURE = True
 
