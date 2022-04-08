@@ -1,0 +1,31 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex: wrap;
+    margin-top: 30px;
+
+    color:#fff;
+    background-color: #222;
+}
+
+footer .social-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 50%;
+    padding: 8px 32px 8px 32px;
+}
+
+footer .social-media .footer-img {
+    width: 75px;
+    margin: 8px;
+}
+
+footer .all-rights-reserved {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

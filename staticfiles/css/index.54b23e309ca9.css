@@ -1,0 +1,82 @@
+#index-view {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+
+    width: 300px;
+    height: 250px;
+    min-width: 300px;
+    margin: 4px;
+}
+
+.card-img {
+    width: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 4px;
+}
+
+.card-data {
+    width: 50%;
+}
+
+.card-div-btn {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+}
+
+.card-btn {
+    background-color: #222;
+    border: none;
+    border-radius: 0 0 5px 0;
+    color:rgb(199, 143, 0);
+    cursor: pointer;
+    width: 80px;
+    height: 50px;
+}
+.card-btn:active {
+    background-color: #222;
+}
+
+.pulse::before{
+    animation: pulse-animation 3s cubic-bezier(0.24, 0, 0.38, 9) infinite;
+}
+
+.modal {
+    max-height: 500px !important;
+}
+
+.img-pedido {
+    width: 60px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 4px;
+}
+
+.div-qtd {
+    display: flex; 
+    flex-direction: column;
+}
+.forma-retirada {
+    display: flex; 
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.forma-pagamento {
+    display: flex; 
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 550px) {
+}

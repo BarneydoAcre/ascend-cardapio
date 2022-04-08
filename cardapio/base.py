@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()
 
-ALLOWED_HOSTS = ['https://ascend-pedidos.herokuapp.com', 'ascend-pedidos.herokuapp.com']
+ALLOWED_HOSTS = []
 method = 'p'
 
 if method == 'p':
@@ -30,11 +30,15 @@ if method == 'p':
 
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-    SECURE_SSL_REDIRECT = False
+    SECURE_SSL_REDIRECT = True
 
     SESSION_COOKIE_SECURE = True
 
     CSRF_COOKIE_SECURE = True
+
+    STATIC_ROOT = "staticfiles/"
+
+    STATIC_URL = "https://ascend-pedidos.herokuapp.com/static/"
 
 elif method == 'd':
     DEBUG = True
@@ -61,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'app',
 ]
 
@@ -74,7 +79,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-APPEND_SLASH=False
+#APPEND_SLASH=False
 
 ROOT_URLCONF = 'cardapio.urls'
 
@@ -138,8 +143,6 @@ LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 
