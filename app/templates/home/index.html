@@ -30,7 +30,7 @@
         </div>
       </div>
     </a>
-    
+
     <div id="modal{{p.id}}" class="modal">
       <div class="modal-content">
         <h4>{{ p.name }}</h4>
@@ -40,7 +40,7 @@
         </p>        
         <div class="card-data" style="width: 100%; display: flex; align-items: center; flex-direction: column;">
           <h6 style="margin-top: 24px;"><b>Informações adicionais</b></h6>
-          <div class='div-qtd' style="display: flex; justify-content: center; align-items: center; border: 1px solid #ccc; width: 90px; height: 130px; border-radius: 5px;">
+          <div class='div-qtd' style="display: flex; justify-content: center; align-items: center; border: 1px solid #ccc; width: 90px; height: 130px; border-radius: 5px; margin-bottom: 25px;">
             <label for="qtd" id="qtdLabel">Quantidade</label>
             <div style="display: flex; flex-direction: column; align-items: center; width: 80px;">
               <div>
@@ -62,10 +62,10 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button v-if="qtd" @click="pedidos({{ p.id }})" class="btn modal-close">Adicionar ao pedido</button>
-        <button v-else @click="pedidos({{ p.id }})" class="btn">Adicionar ao pedido</button>
-      </div>
+      <button v-if="qtd" @click="pedidos({{ p.id }})" class="btn modal-close" style="position:absolute; bottom: 0; right:0; margin: 0 8px 8px 0;">Adicionar ao pedido</button>
+      <button v-else @click="pedidos({{ p.id }})" class="btn" style="position:absolute; bottom: 0; right:0; margin: 0 8px 8px 0;">Adicionar ao pedido</button>
+      <!-- <div class="modal-footer">
+      </div> -->
     </div>
     
     {% endfor %}
