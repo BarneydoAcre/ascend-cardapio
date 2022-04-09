@@ -21,8 +21,8 @@ def index(request):
         ger['instagram'] = g.link_instagram
     db['gerencial'] = ger
     
-    return render(request, 'base.html', db)
-    # return render(request, 'home/index.html', db)
+    # return render(request, 'base.html', db)
+    return render(request, 'home/index.html', db)
 
 def promocao(request):
     return render(request, 'home/promocao.html')
