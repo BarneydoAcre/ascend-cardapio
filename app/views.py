@@ -20,9 +20,10 @@ def index(request):
         ger['whatsapp'] = g.num_whatsapp
         ger['instagram'] = g.link_instagram
     db['gerencial'] = ger
+    db['produtos'] = models.Produto.objects.all()
     
-    # return render(request, 'base.html', db)
     return render(request, 'home/index.html', db)
+    # return render(request, 'home/index.html', db)
 
 def promocao(request):
     return render(request, 'home/promocao.html')
