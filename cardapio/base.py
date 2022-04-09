@@ -18,23 +18,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()
 
-method = ''
+method = 'p'
 
 DEBUG = False if method == 'p' else True
 
 ALLOWED_HOSTS = []
 
-SECURE_HSTS_SECONDS = False
+SECURE_HSTS_SECONDS = True
 
-SECURE_HSTS_PRELOAD = False
+SECURE_HSTS_PRELOAD = True
 
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-SECURE_SSL_REDIRECT = False if method == 'p' else False
+SECURE_SSL_REDIRECT = True if method == 'p' else False
 
 SESSION_COOKIE_SECURE = False #pode bugar
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 
 STATIC_ROOT = 'staticfiles/'
 
