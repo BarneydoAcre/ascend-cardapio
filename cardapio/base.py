@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()
 
-method = 'p'
+method = ''
 
 DEBUG = False if method == 'p' else True
 
@@ -39,6 +39,7 @@ CSRF_COOKIE_SECURE = False
 STATIC_ROOT = 'staticfiles/'
 
 STATIC_URL = 'https://tartas-hotdog.herokuapp.com/static/'
+
 # STATIC_URL = '127.0.0.1:8000/static/'
 
 STATICFILES_FINDERS = (
