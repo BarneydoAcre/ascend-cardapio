@@ -50,7 +50,6 @@ def getAllProdutos(request):
 def getWhatsNum(request):
     data = []
     for g in models.Gerencial.objects.all():
-        print(g.num_whatsapp)
         data.append({"whats": g.num_whatsapp})
     return HttpResponse(json.dumps(data))
 

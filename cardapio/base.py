@@ -10,19 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import django_heroku
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-from django.core.management.utils import get_random_secret_key
-SECRET_KEY = get_random_secret_key()
+# from django.core.management.utils import get_random_secret_key
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 method = ''
 
-DEBUG = False if method == 'p' else True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://192.168.0.0:8000/',
+                 'http://200.101.39.125:8000/'
+                ]
 
 SECURE_HSTS_SECONDS = False
 
@@ -30,7 +33,7 @@ SECURE_HSTS_PRELOAD = False
 
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
-SECURE_SSL_REDIRECT = False if method == 'p' else False
+SECURE_SSL_REDIRECT = False #if method == 'p' else False
 
 SESSION_COOKIE_SECURE = False #pode bugar
 

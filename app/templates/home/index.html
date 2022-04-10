@@ -101,11 +101,11 @@
 
         <div style="display: flex; align-items: center;">
           <div class="input-field" style="width: 30%; margin-right: 10%;  ">
-            <input type="text" name="cpf" id="cpf" maxlength="14" @blur="cpfValidate" @blur="sendPedido" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
+            <input type="text" name="cpf" id="cpf" maxlength="14" @blur="cpfValidate" @blur="testPedido" v-on:keydown="cpfMaskDown($event)" v-on:keyup="cpfMaskUp($event)">
             <label for="cpf" id="cpfLabel">CPF</label>
           </div>
           <div class="input-field" style="width: 60%;">
-            <input type="text" name="idname" id="idname" maxlength="30" @blur="nomeValidate" v-model="nome">
+            <input type="text" name="idname" id="idname" maxlength="30" @blur="testPedido" @blur="nomeValidate" v-model="nome">
             <label for="idname" id="nameLabel">Nome</label>
           </div>
         </div>
@@ -114,16 +114,16 @@
         <div style="display: flex; justify-content: space-evenly;">
           <div class="forma-retirada">
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="entrega">
+              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="entrega" @click="testPedido">
               <span>Entrega?</span>
             </label>
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="retirada">
+              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="retirada" @click="testPedido">
               <span>Retirar no local?</span>
             </label>
             {% if gerencial.tipo_servico == 1 %}
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="local">
+              <input type="checkbox" class="filled-in" @click="retiradaForma" v-model="local" @click="testPedido">
               <span>Comer no local?</span>
             </label>
             {% endif %}
@@ -132,15 +132,15 @@
 
           <div class="forma-pagamento">
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="dinheiro">
+              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="testPedido" v-model="dinheiro">
               <span>Dinheiro</span>
             </label>
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="debito">
+              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="testPedido" v-model="debito">
               <span>Débito</span>
             </label>
             <label style="display: flex; align-items: center;">
-              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="sendPedido" v-model="credito">
+              <input type="checkbox" class="filled-in" @click="pagamentoForma" @click="testPedido" v-model="credito">
               <span>Crédito</span>
             </label>
           </div>
@@ -149,7 +149,7 @@
         </div>
         <div v-show="entrega">
           <div class="input-field">
-            <input type="text" name="rua" id="rua" maxlength="50" v-model="end">
+            <input type="text" name="rua" id="rua" maxlength="50" v-model="end" @blur="testPedido">
             <label for="rua">Rua/Bairro/Nº</label>
           </div>
 
@@ -158,7 +158,7 @@
       <div class="modal-footer">
         <a class="btn modal-close" style="z-index: 100; background-color: #222; margin-right: 16px;" data-target="modal1">Voltar</a>
         <a v-if="linkOk == true" @click="sendPedido" @click="resetVariables" href="#" target="_blank" class="modal-close btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
-        <a v-else @click="sendPedido" class="btn" style="z-index: 100; background-color: rgb(199, 143, 0);" data-target="modal1">Finalizar Pedido</a>
+        <a v-else @click="testPedido" class="btn" style="z-index: 100; background-color: rgb(199, 0, 0);" data-target="modal1">Verifique seu pedido</a>
       </div>
     </form>
   </div>

@@ -66,7 +66,7 @@ const myApp = {
                     self.cpfLabel.innerHTML = "CPF vázio!"
                 }
             }
-            this.sendPedido()
+            this.testPedido()
         },
 
         retiradaForma() {
@@ -152,7 +152,7 @@ const myApp = {
             return false;
         },
 
-        async sendPedido() {
+        async testPedido() {
             if (this.cpfValidate() != true) {return false;}
             if (this.nomeValidate() != true) {return false;}
             if (this.entregaValidate() != true) {return false;}
@@ -174,10 +174,14 @@ const myApp = {
                     this.linkText = `text=Olá, aqui alguns dados para o meu pedido:%0A%0ACPF: ${this.cpf}%0ANome: ${this.nome}%0AForma entrega: ${this.formaEntrega}%0AForma de pagamento: ${this.formaPagamento}%0A%0AItens:%0A${s}`
                 }
                 this.linkOk = true
-                window.open(this.link + this.linkText)
             }else {
                 return false;// window.alert('Precisa ser adicionado ao menos um item ao pedido!')
             }
+        },
+
+        async sendPedido() {
+            window.open(this.link + this.linkText)
+            this.resetVariables()            
         },
 
         async resetVariables() {
