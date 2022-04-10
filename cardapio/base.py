@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import django_heroku
+from . import deploy
 import os
 from pathlib import Path
 
@@ -97,26 +98,18 @@ WSGI_APPLICATION = 'cardapio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pedidos_db',
-        'USER': 'postgres',
-        'PASSWORD': 'post',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dc7j420kov8043',
-        'USER': 'xgfkilbokpurvw',
-        'PASSWORD': '4b0fac5998f69160a22d8cf7a463de6759ae75d2fe2d20793d97ad42c884049e',
-        'HOST': 'ec2-52-1-115-6.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'pedidos_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'post',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+DATABASES = deploy.DATABASES
 
 
 # Password validation
